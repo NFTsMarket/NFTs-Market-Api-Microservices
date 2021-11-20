@@ -23,14 +23,34 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./apps/api-gateway/test/jest-e2e.json "
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/NFTsMarket/NFTs-Market-Api-Microservices.git"
-  },
-  "author": "Bujosa",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/NFTsMarket/NFTs-Market-Api-Microservices/issues"
-  },
-  "homepage": "https://github.com/NFTsMarket/NFTs-Market-Api-Microservices#readme"
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "setupFilesAfterEnv": [
+      "./test/setup.jest.ts"
+    ],
+    "rootDir": ".",
+    "testRegex": ".spec.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "coverageDirectory": "./coverage",
+    "testEnvironment": "node",
+    "roots": [
+      "<rootDir>/apps/",
+      "<rootDir>/libs/"
+    ],
+    "modulePaths": [
+      "<rootDir>"
+    ],
+    "moduleNameMapper": {
+      "@shared/(.*)": "<rootDir>/shared/src/$1",
+      "@shared": "<rootDir>/shared/src",
+      "@user/(.*)": "<rootDir>/apps/user/src/$1",
+      "@user/": "<rootDir>/apps/user/src/"
+    }
+  }
 }
