@@ -1,7 +1,7 @@
 import { Test } from "@nestjs/testing";
 import { entityRepository } from "../data/classes/mock/repository.class";
 import { CommonServiceTests } from "./common-service-tests";
-import { ServiceTestConfigType } from "./types/service-test-config-v2.type";
+import { ServiceTestConfigType } from "./types/service-test-config.type";
 
 export const initializeCommonServiceTests = async (
   config: ServiceTestConfigType
