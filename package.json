@@ -1,10 +1,27 @@
 {
   "name": "nfts-market-api-microservices",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "<p align=\"center\">   <a href=\"http://nestjs.com/\" target=\"blank\"><img src=\"https://nestjs.com/img/logo_text.svg\" width=\"320\" alt=\"Nest Logo\" /></a> </p>",
+  "workspaces": [
+    "./apps/*",
+    "shared"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prebuild": "rimraf dist",
+    "build": "nest build",
+    "format": "prettier --write \"apps/**/*.ts\" \"shared/**/*.ts\"",
+    "start": "nest start",
+    "start:dev": "nest start --watch",
+    "start:debug": "nest start --debug --watch",
+    "start:prod": "node dist/main",
+    "lint": "eslint \"{src,apps,shared,test}/**/*.ts\" --fix",
+    "lint:prod": "eslint --max-warnings 0 \"{src,apps,shared,test}/**/*.ts\" --fix",
+    "test": "jest --forceExit --maxWorkers=4",
+    "test:force": "jest --forceExit --maxWorkers=2 --testTimeout=30000",
+    "test:watch": "jest --watch --maxWorkers=2",
+    "test:cov": "jest --coverage",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:e2e": "jest --config ./apps/api-gateway/test/jest-e2e.json "
   },
   "repository": {
     "type": "git",
