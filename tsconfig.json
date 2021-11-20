@@ -15,7 +15,7 @@
       "@shared": [
         "shared/src"
       ],
-      "@common/common/*": [
+      "@shared/*": [
         "shared/src/*"
       ],
       "@user/": [
