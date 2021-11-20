@@ -25,50 +25,14 @@ describe("RolesGuard", () => {
 
   const correctTestCases = [
     [
-      [UserRoles.CLIENT, UserRoles.CUSTOMER_CARE],
+      [UserRoles.ADMIN],
       [
-        UserRoles.ADMIN,
-        UserRoles.MARKETING,
-        UserRoles.TECHNICIAN,
-        UserRoles.CLIENT,
+        UserRoles.CLIENT
       ],
     ],
-    [
-      [UserRoles.CUSTOMER_CARE, UserRoles.CLIENT],
-      [
-        UserRoles.CLIENT,
-        UserRoles.ADMIN,
-        UserRoles.MARKETING,
-        UserRoles.TECHNICIAN,
-        UserRoles.CUSTOMER_CARE,
-      ],
-    ],
-    [
-      [UserRoles.TECHNICIAN_SUPERVISOR, UserRoles.UPLOADER],
-      [UserRoles.TECHNICIAN_SUPERVISOR, UserRoles.ADMIN],
-    ],
-    [[UserRoles.MARKETING], [UserRoles.MARKETING]],
-    [[UserRoles.TECHNICIAN], [UserRoles.UPLOADER, UserRoles.TECHNICIAN]],
   ];
 
-  const failedTestCases = [
-    [
-      [UserRoles.CLIENT, UserRoles.CUSTOMER_CARE],
-      [UserRoles.ADMIN, UserRoles.MARKETING, UserRoles.TECHNICIAN],
-    ],
-    [
-      [UserRoles.CUSTOMER_CARE],
-      [
-        UserRoles.CLIENT,
-        UserRoles.ADMIN,
-        UserRoles.MARKETING,
-        UserRoles.TECHNICIAN,
-      ],
-    ],
-    [[UserRoles.TECHNICIAN_SUPERVISOR, UserRoles.UPLOADER], [UserRoles.ADMIN]],
-    [[], [UserRoles.MARKETING]],
-    [[UserRoles.TECHNICIAN], []],
-  ];
+  const failedTestCases = [[[UserRoles.CLIENT, UserRoles.ADMIN]]];
 
   beforeAll(() => {
     rolesGuard = new RolesGuard(reflector);
