@@ -1,5 +1,5 @@
-import { Env } from '@common/common/config/env.enum';
-import { BaseError } from '../base-error.abstract';
+import { Env } from "@shared/config/env.enum";
+import { BaseError } from "../base-error.abstract";
 
 export class InvalidMongoSortOperarationError extends BaseError {
   constructor(operation: string) {

@@ -1,9 +1,9 @@
-import { loggerService } from '@common/common/logger/mock/logger.service';
-import { ArgumentsHost } from '@nestjs/common';
-import { InternalServerError } from '../../common/internal-server.error';
-import { CustomExceptionsFilter } from '../custom.exception-filter';
+import { loggerService } from "@shared/logger/mock/logger.service";
+import { ArgumentsHost } from "@nestjs/common";
+import { InternalServerError } from "../../common/internal-server.error";
+import { CustomExceptionsFilter } from "../custom.exception-filter";
 
-describe('CustomExceptionFilter', () => {
+describe("CustomExceptionFilter", () => {
   const httpExeptionHandler = {
     handleException: jest.fn(),
   };
@@ -22,14 +22,14 @@ describe('CustomExceptionFilter', () => {
   beforeAll(() => {
     customExceptionsFilter = new CustomExceptionsFilter(
       loggerService,
-      httpExeptionHandler,
+      httpExeptionHandler
     );
   });
 
-  it('should call the error method of the loggger', () => {
+  it("should call the error method of the loggger", () => {
     // Arrange
     const error = new InternalServerError();
-    (host.getType as jest.Mock).mockReturnValueOnce('http');
+    (host.getType as jest.Mock).mockReturnValueOnce("http");
 
     //Act
     customExceptionsFilter.catch(error, host);
@@ -38,10 +38,10 @@ describe('CustomExceptionFilter', () => {
     expect(loggerService.error).toHaveBeenCalled();
   });
 
-  it('should call the handleException method of the httpExceptionHandler, if the host type is http', () => {
+  it("should call the handleException method of the httpExceptionHandler, if the host type is http", () => {
     // Arrange
     const error = new InternalServerError();
-    (host.getType as jest.Mock).mockReturnValueOnce('http');
+    (host.getType as jest.Mock).mockReturnValueOnce("http");
 
     //Act
     customExceptionsFilter.catch(error, host);
@@ -50,10 +50,10 @@ describe('CustomExceptionFilter', () => {
     expect(httpExeptionHandler.handleException).toHaveBeenCalled();
   });
 
-  it('should return the exception, if the host type is graphql', () => {
+  it("should return the exception, if the host type is graphql", () => {
     // Arrange
     const error = new InternalServerError();
-    (host.getType as jest.Mock).mockReturnValueOnce('graphql');
+    (host.getType as jest.Mock).mockReturnValueOnce("graphql");
 
     //Act
     const result = customExceptionsFilter.catch(error, host);
