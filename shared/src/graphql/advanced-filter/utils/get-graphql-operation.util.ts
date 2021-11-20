@@ -1,18 +1,18 @@
-import { MissingRequiredParametersError } from '@common/common/errors/common/missing-required-parameters.error';
-import { InvalidFieldNameFilterError } from '@common/common/errors/filters/invalid-field-name-filter.error';
-import { InvalidGqlFilterOperationError } from '@common/common/errors/filters/invalid-gql-filter-operation.error';
+import { MissingRequiredParametersError } from "@shared/errors/common/missing-required-parameters.error";
+import { InvalidFieldNameFilterError } from "@shared/errors/filters/invalid-field-name-filter.error";
+import { InvalidGqlFilterOperationError } from "@shared/errors/filters/invalid-gql-filter-operation.error";
 import {
   GraphqlFilterOperation,
   GraphqlFilterOperationEnum,
-} from '../enum/graphql-filter-operation.enum';
-import { IGetGraphqlOperationResult } from '../interfaces/get-graphql-operation-result.interface';
+} from "../enum/graphql-filter-operation.enum";
+import { IGetGraphqlOperationResult } from "../interfaces/get-graphql-operation-result.interface";
 
 export const getGqlOperation = (field: string): IGetGraphqlOperationResult => {
   if (!field) {
-    throw new MissingRequiredParametersError('getGqlOperation');
+    throw new MissingRequiredParametersError("getGqlOperation");
   }
 
-  const fieldOperation = field.split('_');
+  const fieldOperation = field.split("_");
 
   if (fieldOperation.length >= 3) {
     throw new InvalidFieldNameFilterError(field);
@@ -44,6 +44,6 @@ const _getGqlOperation = (gqlOperation: string): GraphqlFilterOperation => {
 
 const isGqlOperation = (input: string) => {
   return Object.values(GraphqlFilterOperationEnum).includes(
-    <GraphqlFilterOperationEnum>input,
+    <GraphqlFilterOperationEnum>input
   );
 };
