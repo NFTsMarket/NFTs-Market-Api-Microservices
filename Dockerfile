@@ -15,6 +15,12 @@ COPY shared ./shared
 
 COPY apps /usr/apps
 
+FROM node:14-alpine AS api-gateway
+WORKDIR /usr/src/app
+COPY --from=base /usr/src/app/ .
+COPY --from=base /usr/apps/api-gateway ./apps/api-gateway
+CMD ["npm","run","start:dev"]
+
 FROM node:14-alpine AS user
 WORKDIR /usr/src/app
 COPY --from=base /usr/src/app/ .
