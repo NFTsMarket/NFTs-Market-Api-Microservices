@@ -1,7 +1,7 @@
 import {
   DeletedEventPayload,
   UpdatedEventPayload,
-} from "@shared/data/classes/event-payload.class";
+} from '@shared/data/classes/event-payload.class';
 
 export class CreatedUserPayload {
   id: string;
