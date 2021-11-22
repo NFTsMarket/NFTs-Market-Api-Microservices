@@ -13,7 +13,7 @@ import { CreateAuthTokenInput } from '../auth-token/graphql/inputs/create-auth-t
 import { ValidateAuthTokenInput } from '../auth-token/graphql/inputs/validate-auth-token.input';
 import { AuthProviders, AuthType } from './utils/auth-providers.enum';
 import { PubSubClient } from '@shared/microservices/pub-sub/pub-sub-client';
-import { FirebaseAdminService } from '@shared/firebase-admin/firebase-admin.service';
+import { FirebaseAdminService } from '@user/firebase-admin/firebase-admin.service';
 import { getAuthProvider } from './utils/get-auth-provider.util';
 import { PUB_SUB_CLIENT_TOKEN } from '@shared/microservices/pub-sub/constants/pub-sub-client.constants';
 import { TokensService } from './tokens.service';

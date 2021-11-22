@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { CommonService } from './common.service';
 import { LoggerModule } from './logger/logger.module';
-import { FirebaseAdminModule } from './firebase-admin/firebase-admin.module';
+import { FirebaseAdminModule } from '../../apps/user/src/firebase-admin/firebase-admin.module';
 
 @Module({
   providers: [CommonService],
