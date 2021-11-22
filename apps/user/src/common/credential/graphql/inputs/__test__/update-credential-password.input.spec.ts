@@ -84,7 +84,7 @@ describe('UpdateCredentialPasswordInput', () => {
         const input = {
           where: {
             ...updateCredentialPasswordinput.where,
-            email: 'missingdotcom@curbo',
+            email: 'missingdotcom@test',
           },
           data: updateCredentialPasswordinput.data,
         };

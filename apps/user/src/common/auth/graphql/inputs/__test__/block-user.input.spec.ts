@@ -44,7 +44,7 @@ describe('BlockUserInput', () => {
     it('should return error when email is invalid', () => {
       const input = {
         ...blockUserInput,
-        email: 'missingdotcom@curbo',
+        email: 'missingdotcom@test',
       };
 
       const result = BlockUserInput.validationSchema.validate(input);

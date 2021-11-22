@@ -92,7 +92,7 @@ describe('SignUpUserInput', () => {
       it('should return error when email is invalid', () => {
         const input = {
           ...signUpUserInput,
-          email: 'missingdotcom@curbo',
+          email: 'missingdotcom@test',
         };
 
         const result = SignUpUserInput.validationSchema.validate(input);
