@@ -5,7 +5,6 @@ import { UpdateCredentialPayload } from './update-credential.payload';
 import * as joi from 'joi';
 import { validateIdWithJoi } from '@shared/validations/common/identification/mongo-id/id.validator';
 import { validateEmailWithJoi } from '@user/validations/email/email.validator';
-import { validateBooleanWithJoi } from '@shared/validations/data-types/boolean/boolean.validator';
 
 @InputType()
 export class UpdateCredentialInput extends ValidationInput {
@@ -21,8 +20,8 @@ export class UpdateCredentialInput extends ValidationInput {
       email: validateEmailWithJoi,
     },
     data: {
-      confirmed: validateBooleanWithJoi,
-      blocked: validateBooleanWithJoi,
+      confirmed: joi.boolean(),
+      blocked: joi.boolean(),
     },
   });
 }
