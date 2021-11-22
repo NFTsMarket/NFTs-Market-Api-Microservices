@@ -7,7 +7,7 @@ import { PubSubClient } from '@shared/microservices/pub-sub/pub-sub-client';
 import { PUB_SUB_CLIENT_TOKEN } from '@shared/microservices/pub-sub/constants/pub-sub-client.constants';
 import { ConfigService } from '@nestjs/config';
 import { EnvKey } from './config/env-key.enum';
-import { JoiValidationPipe } from '@shared/pipes/joi-validation.pipe';
+import { JoiValidationPipe } from '@user/pipes/joi-validation.pipe';
 import { CustomExceptionsFilter } from '@shared/errors/exception-filters/custom.exception-filter';
 import { HttpExceptionHandler } from '@shared/errors/http-exception-handler';
 

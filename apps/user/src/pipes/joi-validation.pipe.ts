@@ -1,5 +1,5 @@
 import { PipeTransform, Injectable, ArgumentMetadata } from '@nestjs/common';
-import { InvalidUserInputError } from '../errors/common/invalid-user-input.error';
+import { InvalidUserInputError } from '@shared/errors/common/invalid-user-input.error';
 
 @Injectable()
 export class JoiValidationPipe implements PipeTransform {
