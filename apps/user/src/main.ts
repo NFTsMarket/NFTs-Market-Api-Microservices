@@ -1,4 +1,4 @@
-import { MongoSanitizeInterceptor } from '@shared/mongo/interceptors/mongo-sanitize.interceptor';
+import { MongoSanitizeInterceptor } from '@user/mongo/interceptors/mongo-sanitize.interceptor';
 import { LoggerService } from '@shared/logger/logger.service';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
