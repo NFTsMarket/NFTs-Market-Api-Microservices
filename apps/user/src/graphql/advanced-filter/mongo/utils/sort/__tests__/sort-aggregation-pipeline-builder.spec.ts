@@ -1,9 +1,9 @@
-import { GraphqlSortOperationEnum } from "@shared/graphql/advanced-filter/enum/graphql-sort-operation.enum";
-import { MongoSortOperationEnum } from "../../../enum/mongo-sort-operation.enum";
-import { sortAggregationPipelineBuilder } from "../sort-aggregation-pipeline-builder";
+import { GraphqlSortOperationEnum } from '@user/graphql/advanced-filter/enum/graphql-sort-operation.enum';
+import { MongoSortOperationEnum } from '../../../enum/mongo-sort-operation.enum';
+import { sortAggregationPipelineBuilder } from '../sort-aggregation-pipeline-builder';
 
-describe("SortAggregationPipelineBuilder", () => {
-  it("should return an empty array if gieven a null sortOptions object", () => {
+describe('SortAggregationPipelineBuilder', () => {
+  it('should return an empty array if gieven a null sortOptions object', () => {
     // act
     const res = sortAggregationPipelineBuilder([], null);
 
@@ -11,7 +11,7 @@ describe("SortAggregationPipelineBuilder", () => {
     expect(res).toEqual([]);
   });
 
-  it("should return an empty array if gieven a undefined sortOptions object", () => {
+  it('should return an empty array if gieven a undefined sortOptions object', () => {
     // act
     const res = sortAggregationPipelineBuilder([], undefined);
 
@@ -19,7 +19,7 @@ describe("SortAggregationPipelineBuilder", () => {
     expect(res).toEqual([]);
   });
 
-  it("should return an empty array if gieven an empty sortOptions object", () => {
+  it('should return an empty array if gieven an empty sortOptions object', () => {
     // act
     const res = sortAggregationPipelineBuilder([], {});
 
@@ -27,7 +27,7 @@ describe("SortAggregationPipelineBuilder", () => {
     expect(res).toEqual([]);
   });
 
-  it("should return an array with a sort stage if given a valid sortOptions object", () => {
+  it('should return an array with a sort stage if given a valid sortOptions object', () => {
     //   arrange
     const sortOptions = {
       year: GraphqlSortOperationEnum.asc,
@@ -50,7 +50,7 @@ describe("SortAggregationPipelineBuilder", () => {
     expect(res).toEqual(exptectedResult);
   });
 
-  it("should return an array with a sort stage if given a valid sortOptions object with nested fields", () => {
+  it('should return an array with a sort stage if given a valid sortOptions object with nested fields', () => {
     //   arrange
     const sortOptions = {
       brand: {
@@ -61,7 +61,7 @@ describe("SortAggregationPipelineBuilder", () => {
     const exptectedResult = [
       {
         $sort: {
-          "brand.slug": MongoSortOperationEnum.asc,
+          'brand.slug': MongoSortOperationEnum.asc,
         },
       },
     ];

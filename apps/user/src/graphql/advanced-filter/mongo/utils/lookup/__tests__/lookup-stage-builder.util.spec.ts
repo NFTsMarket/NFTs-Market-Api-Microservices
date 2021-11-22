@@ -1,10 +1,10 @@
-import { GraphqlSortOperationEnum } from "@shared/graphql/advanced-filter/enum/graphql-sort-operation.enum";
-import { Types } from "mongoose";
-import { lookupStageBuilder } from "../lookup-stage-builder.util";
-import * as faker from "faker";
+import { GraphqlSortOperationEnum } from '@user/graphql/advanced-filter/enum/graphql-sort-operation.enum';
+import { Types } from 'mongoose';
+import { lookupStageBuilder } from '../lookup-stage-builder.util';
+import * as faker from 'faker';
 
-describe("LookupStageBuilder", () => {
-  it("should return an empty array if both sortOptions and filterOptions are null", () => {
+describe('LookupStageBuilder', () => {
+  it('should return an empty array if both sortOptions and filterOptions are null', () => {
     // act
     const res = lookupStageBuilder([], null, null);
 
@@ -12,7 +12,7 @@ describe("LookupStageBuilder", () => {
     expect(res).toEqual([]);
   });
 
-  it("should return an empty array if both sortOptions and filterOptions are undefined", () => {
+  it('should return an empty array if both sortOptions and filterOptions are undefined', () => {
     // act
     const res = lookupStageBuilder([], undefined, undefined);
 
@@ -20,7 +20,7 @@ describe("LookupStageBuilder", () => {
     expect(res).toEqual([]);
   });
 
-  it("should return an empty array if both sortOptions and filterOptions are empty objects", () => {
+  it('should return an empty array if both sortOptions and filterOptions are empty objects', () => {
     // act
     const res = lookupStageBuilder([], {}, {});
 
@@ -49,30 +49,30 @@ describe("LookupStageBuilder", () => {
   };
 
   it.each([successCase1NotNested(), successCase2NotNested()])(
-    "should return an empty array if both sortOptions and filterOptions do not contain nested objects",
+    'should return an empty array if both sortOptions and filterOptions do not contain nested objects',
     (filterOptions, sortOptions) => {
       // act
       const res = lookupStageBuilder([], filterOptions, sortOptions);
 
       // assert
       expect(res).toEqual([]);
-    }
+    },
   );
 
   const successCase1Nested = () => {
     const filterOptions = {
       model: {
-        name: "Toyota",
+        name: 'Toyota',
       },
     };
 
     const expectedResult = [
       {
         $lookup: {
-          from: "model",
-          localField: "model",
-          foreignField: "_id",
-          as: "model",
+          from: 'model',
+          localField: 'model',
+          foreignField: '_id',
+          as: 'model',
         },
       },
     ];
@@ -94,10 +94,10 @@ describe("LookupStageBuilder", () => {
     const expectedResult = [
       {
         $lookup: {
-          from: "model",
-          localField: "model",
-          foreignField: "_id",
-          as: "model",
+          from: 'model',
+          localField: 'model',
+          foreignField: '_id',
+          as: 'model',
         },
       },
     ];
@@ -106,20 +106,20 @@ describe("LookupStageBuilder", () => {
   };
 
   it.each([successCase1Nested(), successCase2Nested()])(
-    "should return an empty array if sortOptions or filterOptions contains nested objects",
+    'should return an empty array if sortOptions or filterOptions contains nested objects',
     (filterOptions, sortOptions, expectedResult) => {
       // act
       const res = lookupStageBuilder([], filterOptions, sortOptions);
 
       // assert
       expect(res).toEqual(expectedResult);
-    }
+    },
   );
 
   const successCaseBothNested = () => {
     const filterOptions = {
       brand: {
-        name: "Toyota",
+        name: 'Toyota',
       },
     };
 
@@ -132,18 +132,18 @@ describe("LookupStageBuilder", () => {
     const expectedResult = [
       {
         $lookup: {
-          from: "brand",
-          localField: "brand",
-          foreignField: "_id",
-          as: "brand",
+          from: 'brand',
+          localField: 'brand',
+          foreignField: '_id',
+          as: 'brand',
         },
       },
       {
         $lookup: {
-          from: "model",
-          localField: "model",
-          foreignField: "_id",
-          as: "model",
+          from: 'model',
+          localField: 'model',
+          foreignField: '_id',
+          as: 'model',
         },
       },
     ];
@@ -152,18 +152,18 @@ describe("LookupStageBuilder", () => {
   };
 
   it.each([successCaseBothNested()])(
-    "should return an array of lookup stages if both sortOptions and filterOptions contain nested objects",
+    'should return an array of lookup stages if both sortOptions and filterOptions contain nested objects',
     (
       filterOptions: Record<string, any>,
       sortOptions: Record<string, any>,
-      expectedResult: any[]
+      expectedResult: any[],
     ) => {
       // act
       const res = lookupStageBuilder([], filterOptions, sortOptions);
 
       // assert
       expect(res).toEqual(expectedResult);
-    }
+    },
   );
 
   const successCaseBothNestedWithSameKey = () => {
@@ -184,10 +184,10 @@ describe("LookupStageBuilder", () => {
     const expectedResult = [
       {
         $lookup: {
-          from: "model",
-          localField: "model",
-          foreignField: "_id",
-          as: "model",
+          from: 'model',
+          localField: 'model',
+          foreignField: '_id',
+          as: 'model',
         },
       },
     ];
@@ -196,17 +196,17 @@ describe("LookupStageBuilder", () => {
   };
 
   it.each([successCaseBothNestedWithSameKey()])(
-    "should return an array of one lookup stage if sortOptions and filterOptions contain nested objects with the same keys",
+    'should return an array of one lookup stage if sortOptions and filterOptions contain nested objects with the same keys',
     (
       filterOptions: Record<string, any>,
       sortOptions: Record<string, any>,
-      expectedResult: any[]
+      expectedResult: any[],
     ) => {
       // act
       const res = lookupStageBuilder([], filterOptions, sortOptions);
 
       // assert
       expect(res).toEqual(expectedResult);
-    }
+    },
   );
 });

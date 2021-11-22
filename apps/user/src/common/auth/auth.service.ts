@@ -6,7 +6,7 @@ import { AuthenticationType } from './graphql/types/authentication.type';
 import { CredentialService } from '../credential/credential.service';
 import * as bcrypt from 'bcryptjs';
 import { AuthTokenService } from '../auth-token/auth-token.service';
-import { AuthTokenTypes } from '@shared/graphql/enums/auth-token-types.enum';
+import { AuthTokenTypes } from '@user/graphql/enums/auth-token-types.enum';
 import { createUserPayload } from './utils/create-user.payload';
 import { SocialSignInInput } from '../user/graphql/inputs/social-sign-in.input';
 import { CreateAuthTokenInput } from '../auth-token/graphql/inputs/create-auth-token.input';

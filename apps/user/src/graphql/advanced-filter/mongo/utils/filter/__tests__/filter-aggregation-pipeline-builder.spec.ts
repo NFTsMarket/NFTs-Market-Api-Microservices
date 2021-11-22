@@ -1,6 +1,6 @@
 import * as faker from 'faker';
 import { Types } from 'mongoose';
-import { filterAggregationPipelineBuilder } from '../../filter/filter-aggregation-pipeline-builder.util';
+import { filterAggregationPipelineBuilder } from '../filter-aggregation-pipeline-builder.util';
 
 describe('FilterAggregationPipelineBuilder', () => {
   it('should return an empty array given an empty object', () => {

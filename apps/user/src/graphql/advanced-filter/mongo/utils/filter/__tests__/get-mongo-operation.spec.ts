@@ -1,51 +1,51 @@
-import { InternalServerError } from "@shared/errors/common/internal-server.error";
-import { MissingRequiredParametersError } from "@shared/errors/common/missing-required-parameters.error";
+import { InternalServerError } from '@shared/errors/common/internal-server.error';
+import { MissingRequiredParametersError } from '@shared/errors/common/missing-required-parameters.error';
 import {
   GraphqlFilterOperation,
   GraphqlFilterOperationEnum,
-} from "@shared/graphql/advanced-filter/enum/graphql-filter-operation.enum";
+} from '@user/graphql/advanced-filter/enum/graphql-filter-operation.enum';
 import {
   MongoFilterOperationEnum,
   MongoOperation,
-} from "../../../enum/mongo-filter-operation.enum";
-import { getMongoFilterOperation } from "../../filter/get-mongo-filter-operation";
+} from '../../../enum/mongo-filter-operation.enum';
+import { getMongoFilterOperation } from '../get-mongo-filter-operation';
 
-describe("GetMongoOperation", () => {
-  it("should throw an error if given null", () => {
+describe('GetMongoOperation', () => {
+  it('should throw an error if given null', () => {
     // arrange & act & assert
     expect(() => getMongoFilterOperation(null)).toThrow(
-      MissingRequiredParametersError
+      MissingRequiredParametersError,
     );
   });
 
-  it("should throw an error if given undefined", () => {
+  it('should throw an error if given undefined', () => {
     // arrange & act & assert
     expect(() => getMongoFilterOperation(undefined)).toThrow(
-      MissingRequiredParametersError
+      MissingRequiredParametersError,
     );
   });
 
-  it("should throw an error if given an empty string", () => {
+  it('should throw an error if given an empty string', () => {
     // arrange & act & assert
-    expect(() => getMongoFilterOperation(<GraphqlFilterOperation>"")).toThrow(
-      MissingRequiredParametersError
+    expect(() => getMongoFilterOperation(<GraphqlFilterOperation>'')).toThrow(
+      MissingRequiredParametersError,
     );
   });
 
   it.each([
-    ["no_op"],
-    ["another_no_op"],
-    ["eq_no_op"],
-    ["no_op_also_here"],
-    ["nearly_op_eq"],
+    ['no_op'],
+    ['another_no_op'],
+    ['eq_no_op'],
+    ['no_op_also_here'],
+    ['nearly_op_eq'],
   ])(
     'should throw an error if it cannot find a corresponding mongo operation -> "%s"',
-    (input) => {
+    input => {
       // arrange & act & assert
       expect(() =>
-        getMongoFilterOperation(<GraphqlFilterOperation>input)
+        getMongoFilterOperation(<GraphqlFilterOperation>input),
       ).toThrow(InternalServerError);
-    }
+    },
   );
 
   it.each([
@@ -68,6 +68,6 @@ describe("GetMongoOperation", () => {
 
       // assert
       expect(res).toEqual(expectedResult);
-    }
+    },
   );
 });

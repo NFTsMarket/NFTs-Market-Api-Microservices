@@ -1,9 +1,9 @@
-import { IFormatMongooperationInput } from "../../../../interfaces/format-mongo-operation-input.interface";
-import { formatMongoFilterOperation } from "../../filter/format-mongo-filter-operation.util";
-import * as faker from "faker";
-import { MissingRequiredParametersError } from "@shared/errors/common/missing-required-parameters.error";
-import { MongoFilterOperationEnum } from "../../../enum/mongo-filter-operation.enum";
-import { GraphqlFilterOperationEnum } from "@shared/graphql/advanced-filter/enum/graphql-filter-operation.enum";
+import { IFormatMongooperationInput } from '../../../../interfaces/format-mongo-operation-input.interface';
+import { formatMongoFilterOperation } from '../format-mongo-filter-operation.util';
+import * as faker from 'faker';
+import { MissingRequiredParametersError } from '@shared/errors/common/missing-required-parameters.error';
+import { MongoFilterOperationEnum } from '../../../enum/mongo-filter-operation.enum';
+import { GraphqlFilterOperationEnum } from '@user/graphql/advanced-filter/enum/graphql-filter-operation.enum';
 
 const firstSuccessCase = () => {
   const value = faker.datatype.string();
@@ -21,8 +21,8 @@ const firstSuccessCase = () => {
   return [input, expectedResult];
 };
 
-describe("FormatMongoOperation", () => {
-  it("should throw an error if mongoOperation is null", () => {
+describe('FormatMongoOperation', () => {
+  it('should throw an error if mongoOperation is null', () => {
     // arrange
     const fieldName = faker.random.alpha();
 
@@ -35,11 +35,11 @@ describe("FormatMongoOperation", () => {
 
     // act & assert
     expect(() => formatMongoFilterOperation(input)).toThrow(
-      MissingRequiredParametersError
+      MissingRequiredParametersError,
     );
   });
 
-  it("should throw an error if mongoOperation is undefined", () => {
+  it('should throw an error if mongoOperation is undefined', () => {
     // arrange
     const fieldName = faker.random.alpha();
 
@@ -52,11 +52,11 @@ describe("FormatMongoOperation", () => {
 
     // act & assert
     expect(() => formatMongoFilterOperation(input)).toThrow(
-      MissingRequiredParametersError
+      MissingRequiredParametersError,
     );
   });
 
-  it("should throw an error if gqlOperation is null", () => {
+  it('should throw an error if gqlOperation is null', () => {
     // arrange
     const fieldName = faker.random.alpha();
 
@@ -69,11 +69,11 @@ describe("FormatMongoOperation", () => {
 
     // act & assert
     expect(() => formatMongoFilterOperation(input)).toThrow(
-      MissingRequiredParametersError
+      MissingRequiredParametersError,
     );
   });
 
-  it("should throw an error if gqlOperation is undefined", () => {
+  it('should throw an error if gqlOperation is undefined', () => {
     // arrange
     const fieldName = faker.random.alpha();
 
@@ -86,11 +86,11 @@ describe("FormatMongoOperation", () => {
 
     // act & assert
     expect(() => formatMongoFilterOperation(input)).toThrow(
-      MissingRequiredParametersError
+      MissingRequiredParametersError,
     );
   });
 
-  it("should throw an error if fieldName is null", () => {
+  it('should throw an error if fieldName is null', () => {
     // arrange
     const input: IFormatMongooperationInput = {
       gqlOperation: GraphqlFilterOperationEnum.contains,
@@ -101,11 +101,11 @@ describe("FormatMongoOperation", () => {
 
     // act & assert
     expect(() => formatMongoFilterOperation(input)).toThrow(
-      MissingRequiredParametersError
+      MissingRequiredParametersError,
     );
   });
 
-  it("should throw an error if fieldName is undefined", () => {
+  it('should throw an error if fieldName is undefined', () => {
     // arrange
     const input: IFormatMongooperationInput = {
       gqlOperation: GraphqlFilterOperationEnum.contains,
@@ -116,15 +116,15 @@ describe("FormatMongoOperation", () => {
 
     // act & assert
     expect(() => formatMongoFilterOperation(input)).toThrow(
-      MissingRequiredParametersError
+      MissingRequiredParametersError,
     );
   });
 
   it.each([firstSuccessCase()])(
-    "should return the formatted mongo operation",
+    'should return the formatted mongo operation',
     (
       input: IFormatMongooperationInput,
-      expectedResult: Record<string, any>
+      expectedResult: Record<string, any>,
     ) => {
       // arrange
 
@@ -133,6 +133,6 @@ describe("FormatMongoOperation", () => {
 
       // assert
       expect(res).toEqual(expectedResult);
-    }
+    },
   );
 });

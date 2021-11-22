@@ -3,7 +3,7 @@ import { Model } from 'mongoose';
 import { AuthTokenRepository } from '../auth-token.repository';
 import { AuthToken, AuthTokenSchema } from '../database/auth-token.entity';
 import { CreateAuthTokenInternalInput } from '../dtos/create-auth-token-internal.input';
-import { AuthTokenTypes } from '@shared/graphql/enums/auth-token-types.enum';
+import { AuthTokenTypes } from '@user/graphql/enums/auth-token-types.enum';
 import { EntryNotFoundException } from '@shared/errors/errors';
 import { createUnhashedToken } from '../utils/create-unhashed-token';
 import { hashToken } from '../utils/hash-token';

@@ -1,7 +1,6 @@
-import { Types } from "mongoose";
-import { FilterInput } from "../graphql/inputs/graphql-filter.input";
-import { DEFAULT_LANGUAGE_OPTIONS_DTO } from "../language/dtos/request-language-options.dto";
-import { IUpdateEntity } from "@shared/data/interfaces/update-entity.interface";
+import { Types } from 'mongoose';
+import { FilterInput } from '../../../apps/user/src/graphql/inputs/graphql-filter.input';
+import { IUpdateEntity } from '@shared/data/interfaces/update-entity.interface';
 
 export class CommonServiceTests {
   public readonly entityService;
@@ -18,13 +17,10 @@ export class CommonServiceTests {
     await this.entityService.getOneEntity({ id });
 
     expect(this.entityRepository.getOneEntity).toHaveBeenCalled();
-    expect(this.entityRepository.getOneEntity).toHaveBeenCalledWith(
-      {
-        id,
-        deleted: false,
-      },
-      DEFAULT_LANGUAGE_OPTIONS_DTO
-    );
+    expect(this.entityRepository.getOneEntity).toHaveBeenCalledWith({
+      id,
+      deleted: false,
+    });
   }
 
   public async getAllEntities(filterInput: FilterInput = {}) {
@@ -66,7 +62,6 @@ export class CommonServiceTests {
     expect(this.entityRepository.updateEntity).toHaveBeenCalled();
     expect(this.entityRepository.updateEntity).toHaveBeenCalledWith(
       expectedUpdateEntityInput,
-      DEFAULT_LANGUAGE_OPTIONS_DTO
     );
   }
 
@@ -78,13 +73,10 @@ export class CommonServiceTests {
     });
 
     expect(this.entityRepository.deleteEntity).toHaveBeenCalled();
-    expect(this.entityRepository.deleteEntity).toHaveBeenCalledWith(
-      {
-        deleted: false,
-        id,
-      },
-      DEFAULT_LANGUAGE_OPTIONS_DTO
-    );
+    expect(this.entityRepository.deleteEntity).toHaveBeenCalledWith({
+      deleted: false,
+      id,
+    });
   }
 
   public async addEntityTranslationTestGetOneEntityCall(input: IUpdateEntity) {
@@ -97,17 +89,17 @@ export class CommonServiceTests {
     //Assert
     expect(this.entityRepository.getOneEntity).toHaveBeenCalled();
     expect(this.entityRepository.getOneEntity).toHaveBeenCalledWith(
-      input.where
+      input.where,
     );
   }
 
   public async addEntityTranslationTestUpdateEntityCall(
     input: IUpdateEntity,
-    entityMock
+    entityMock,
   ) {
     //Arrange
     (this.entityRepository.getOneEntity as jest.Mock).mockReturnValueOnce(
-      entityMock
+      entityMock,
     );
 
     const expectedValue = {
@@ -139,7 +131,6 @@ export class CommonServiceTests {
     expect(this.entityRepository.updateEntity).toHaveBeenCalled();
     expect(this.entityRepository.updateEntity).toHaveBeenCalledWith(
       expectedValue,
-      DEFAULT_LANGUAGE_OPTIONS_DTO
     );
   }
 }
