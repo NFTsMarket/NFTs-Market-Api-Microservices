@@ -1,4 +1,4 @@
-FROM node:14-alpine AS base
+FROM node:12-alpine AS base
 
 WORKDIR /usr/src/app
 
@@ -15,15 +15,14 @@ COPY shared ./shared
 
 COPY apps /usr/apps
 
-FROM node:14-alpine AS api-gateway
-WORKDIR /usr/src/app
-COPY --from=base /usr/src/app/ .
-COPY --from=base /usr/apps/api-gateway ./apps/api-gateway
-CMD ["npm","run","start:dev"]
-
-FROM node:14-alpine AS user
+FROM node:12-alpine AS user
 WORKDIR /usr/src/app
 COPY --from=base /usr/src/app/ .
 COPY --from=base /usr/apps/user ./apps/user
 CMD ["npm","run","start:dev","user"]
 
+FROM node:12-alpine AS api-gateway
+WORKDIR /usr/src/app
+COPY --from=base /usr/src/app/ .
+COPY --from=base /usr/apps/api-gateway ./apps/api-gateway
+CMD ["npm","run","start:dev"]
