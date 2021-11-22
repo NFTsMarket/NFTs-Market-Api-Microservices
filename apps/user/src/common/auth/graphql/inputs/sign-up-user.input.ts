@@ -2,7 +2,7 @@ import { ValidationInput } from '@shared/data/classes/validation-input.class';
 import { validateNameWithJoi } from '@shared/validations/common/strings/name/name.validator';
 import { validateUrlWithJoi } from '@shared/validations/common/internet/url/url.validator';
 import { validateEmailWithJoi } from '@shared/validations/entities/user/email/email.validator';
-import { validatePasswordWithJoi } from '@shared/validations/entities/user/password/password.validator';
+import { validatePasswordWithJoi } from '@user/validations/password/password.validator';
 import { InputType, Field } from '@nestjs/graphql';
 import {
   AuthProviders,
