@@ -1,9 +1,9 @@
-import { BadImplementationError } from "@shared/errors/common/bad-implementation.error";
-import { UnauthorizedRoleError } from "@shared/errors/common/unauthorized-role.error";
-import { CanActivate, ExecutionContext, Injectable } from "@nestjs/common";
-import { Reflector } from "@nestjs/core";
-import { GuardRequestGetter } from "../class/guard-request-getter";
-import { AUTHORIZED_ROLES_KEY } from "../decorators/authorized-roles.decorator";
+import { BadImplementationError } from '@shared/errors/common/bad-implementation.error';
+import { UnauthorizedRoleError } from '@shared/errors/common/unauthorized-role.error';
+import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
+import { Reflector } from '@nestjs/core';
+import { GuardRequestGetter } from '../class/guard-request-getter';
+import { AUTHORIZED_ROLES_KEY } from '../decorators/authorized-roles.decorator';
 
 @Injectable()
 export class RolesGuard extends GuardRequestGetter implements CanActivate {
@@ -14,28 +14,27 @@ export class RolesGuard extends GuardRequestGetter implements CanActivate {
   canActivate(context: ExecutionContext): boolean {
     const authorizedRoles = this.reflector.get<string[]>(
       AUTHORIZED_ROLES_KEY,
-      context.getHandler()
+      context.getHandler(),
     );
 
     if (!authorizedRoles) return true;
 
     const request = this.getRequest(context);
 
-    if (!request.user || !request.user.roles)
-      throw new BadImplementationError();
+    if (!request.user || !request.user.role) throw new BadImplementationError();
 
-    const isAuthorized = this.verifyRole(request.user.roles, authorizedRoles);
+    const isAuthorized = this.verifyRole(request.user.role, authorizedRoles);
 
     if (!isAuthorized) {
-      throw new UnauthorizedRoleError(request.user.roles);
+      throw new UnauthorizedRoleError(request.user.role);
     }
 
     return true;
   }
 
-  private verifyRole(userRoles: string[], authorizedRoles: string[]): boolean {
+  private verifyRole(userRole: string, authorizedRoles: string[]): boolean {
     const authorizedRolesSet = new Set(authorizedRoles);
 
-    return userRoles.some((role) => authorizedRolesSet.has(role));
+    return authorizedRolesSet.has(userRole);
   }
 }
