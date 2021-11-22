@@ -1,9 +1,9 @@
-import { BadImplementationError } from "@shared/errors/common/bad-implementation.error";
-import { UnauthorizedRoleError } from "@shared/errors/common/unauthorized-role.error";
-import { UserRoles } from "../../enums/user-roles.enum";
-import { RolesGuard } from "../roles.guard";
+import { BadImplementationError } from '@shared/errors/common/bad-implementation.error';
+import { UnauthorizedRoleError } from '@shared/errors/common/unauthorized-role.error';
+import { UserRoles } from '../../enums/user-roles.enum';
+import { RolesGuard } from '../roles.guard';
 
-describe("RolesGuard", () => {
+describe('RolesGuard', () => {
   let rolesGuard: RolesGuard;
 
   const reflector = {
@@ -16,7 +16,7 @@ describe("RolesGuard", () => {
   const getRequest = jest.fn();
 
   const context: any = {
-    getType: jest.fn().mockReturnValue("http"),
+    getType: jest.fn().mockReturnValue('http'),
     getHandler: () => undefined,
     switchToHttp: () => ({
       getRequest,
@@ -24,22 +24,17 @@ describe("RolesGuard", () => {
   };
 
   const correctTestCases = [
-    [
-      [UserRoles.ADMIN],
-      [
-        UserRoles.CLIENT
-      ],
-    ],
+    [UserRoles.ADMIN, [UserRoles.CLIENT, UserRoles.ADMIN]],
   ];
 
-  const failedTestCases = [[[UserRoles.CLIENT, UserRoles.ADMIN]]];
+  const failedTestCases = [[UserRoles.CLIENT, [UserRoles.ADMIN]]];
 
   beforeAll(() => {
     rolesGuard = new RolesGuard(reflector);
   });
 
-  describe("canActivate", () => {
-    it("should return true if authorized roles are not provided", () => {
+  describe('canActivate', () => {
+    it('should return true if authorized roles are not provided', () => {
       //Arrange
       reflector.get.mockReturnValueOnce(undefined);
 
@@ -50,7 +45,7 @@ describe("RolesGuard", () => {
       expect(result).toBe(true);
     });
 
-    it("should return a BadImplementationError if there is no user defined in the request object", () => {
+    it('should return a BadImplementationError if there is no user defined in the request object', () => {
       //Arrange
       reflector.get.mockReturnValueOnce([]);
       getRequest.mockReturnValueOnce({});
@@ -63,14 +58,14 @@ describe("RolesGuard", () => {
     });
 
     it.each(correctTestCases)(
-      "should return true if the user roles match at least one the authorized roles",
-      (userRoles: UserRoles[], authorizedRoles: UserRoles[]) => {
+      'should return true if the user role match at least one the authorized roles',
+      (userRole: UserRoles, authorizedRoles: UserRoles[]) => {
         //Arrange
         reflector.get.mockReturnValueOnce(authorizedRoles);
 
         getRequest.mockReturnValueOnce({
           user: {
-            roles: userRoles,
+            role: userRole,
           },
         });
 
@@ -79,18 +74,18 @@ describe("RolesGuard", () => {
 
         //Assert
         expect(result).toBe(true);
-      }
+      },
     );
 
     it.each(failedTestCases)(
-      "should return a UnauthorizedRoleError none of the user roles match one of the authorized roles",
-      (userRoles: UserRoles[], authorizedRoles: UserRoles[]) => {
+      'should return a UnauthorizedRoleError none of the user roles match one of the authorized roles',
+      (userRole: UserRoles, authorizedRoles: UserRoles[]) => {
         //Arrange
         reflector.get.mockReturnValueOnce(authorizedRoles);
 
         getRequest.mockReturnValueOnce({
           user: {
-            roles: userRoles,
+            role: userRole,
           },
         });
 
@@ -99,7 +94,7 @@ describe("RolesGuard", () => {
 
         //Assert
         expect(result).toThrow(UnauthorizedRoleError);
-      }
+      },
     );
   });
 });
