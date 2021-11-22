@@ -1,7 +1,7 @@
-import { IDatabaseValidator } from "@shared/data/interfaces/database-validator.interface";
-import validator from "validator";
-import { errorMessageBuilder } from "../../../error-message-builder";
-import * as joi from "joi";
+import { IDatabaseValidator } from '@shared/data/interfaces/database-validator.interface';
+import validator from 'validator';
+import * as joi from 'joi';
+import { errorMessageBuilder } from '@shared/validations/error-message-builder';
 
 export const _validateEmail = (value: string): boolean => {
   if (!value) {

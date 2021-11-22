@@ -1,5 +1,5 @@
 import { ValidationInput } from '@shared/data/classes/validation-input.class';
-import { validateTokenWithJoi } from '@shared/validations/entities/token/token.validator';
+import { validateTokenWithJoi } from '@user/validations/token/token.validator';
 import { InputType, Field } from '@nestjs/graphql';
 import * as joi from 'joi';
 
