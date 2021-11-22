@@ -10,7 +10,7 @@ import { validateEmailWithJoi } from '@shared/validations/entities/user/email/em
 import { validatePasswordWithJoi } from '@user/validations/password/password.validator';
 import { validateUrlWithJoi } from '@shared/validations/common/internet/url/url.validator';
 import { UserRoles } from '@shared/auth/enums/user-roles.enum';
-import { validateUserRoleWithJoi } from '@shared/validations/entities/user/user-role/user-role.validator';
+import { validateUserRoleWithJoi } from '@user/validations/user-role/user-role.validator';
 
 @InputType()
 export class CreateUserInput extends ValidationInput {

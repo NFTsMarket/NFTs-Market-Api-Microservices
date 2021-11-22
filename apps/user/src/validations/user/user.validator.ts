@@ -1,6 +1,6 @@
-import { IDatabaseValidator } from "@shared/data/interfaces/database-validator.interface";
-import { isValidObjectId } from "mongoose";
-import { errorMessageBuilder } from "../../../error-message-builder";
+import { IDatabaseValidator } from '@shared/data/interfaces/database-validator.interface';
+import { errorMessageBuilder } from '@shared/validations/error-message-builder';
+import { isValidObjectId } from 'mongoose';
 
 export const _validateId = (value: string): boolean => {
   if (!value) {
