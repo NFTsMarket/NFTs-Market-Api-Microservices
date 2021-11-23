@@ -5,7 +5,7 @@ import { Types } from 'mongoose';
 import { CreateUserInput } from '../graphql/inputs/create-user.input';
 import { UserRoles } from '@shared/auth/enums/user-roles.enum';
 import { AuthProviders, AuthType } from '../../auth/utils/auth-providers.enum';
-import { FilterInput } from '@shared/graphql/inputs/graphql-filter.input';
+import { FilterInput } from '@user/graphql/inputs/graphql-filter.input';
 import { UpdateUserInput } from '../graphql/inputs/update-user.input';
 import { pubSubClient } from '@shared/config/clients/mock/pub-sub-client';
 import { User } from '../database/user.entity';

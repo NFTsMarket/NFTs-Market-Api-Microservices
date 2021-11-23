@@ -1,4 +1,4 @@
-import { AuthTokenTypes } from '@shared/graphql/enums/auth-token-types.enum';
+import { AuthTokenTypes } from '@user/graphql/enums/auth-token-types.enum';
 import { Inject, Injectable } from '@nestjs/common';
 import { CredentialService } from '../credential/credential.service';
 import { AuthTokenRepository } from './auth-token.repository';

@@ -1,9 +1,9 @@
 import { Document } from 'mongoose';
 import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
 import { IAuthToken } from '../interfaces/entities/auth-token-entity.interface';
-import { validateToken } from '@shared/validations/entities/token/token.validator';
-import { validateEmail } from '@shared/validations/entities/user/email/email.validator';
-import { AuthTokenTypes } from '@shared/graphql/enums/auth-token-types.enum';
+import { validateToken } from '@user/validations/token/token.validator';
+import { validateEmail } from '@user/validations/email/email.validator';
+import { AuthTokenTypes } from '@user/graphql/enums/auth-token-types.enum';
 
 @Schema({
   optimisticConcurrency: true,

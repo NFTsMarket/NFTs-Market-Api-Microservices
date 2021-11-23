@@ -1,11 +1,11 @@
 import { Resolver, Query, Args, Mutation } from '@nestjs/graphql';
-import { FilterInput } from '@shared/graphql/inputs/graphql-filter.input';
-import { GraphQlFieldNames } from '@shared/graphql/enums/graphql-label-types.enum';
-import { graphQlIdArgOption } from '@shared/graphql/types/graphql-delete-mutation-options.type';
+import { FilterInput } from '@user/graphql/inputs/graphql-filter.input';
+import { GraphQlFieldNames } from '@user/graphql/enums/graphql-label-types.enum';
+import { graphQlIdArgOption } from '@user/graphql/types/graphql-delete-mutation-options.type';
 import { User } from './graphql/types/user.type';
 import { UserService } from './user.service';
 import { UpdateUserInput } from './graphql/inputs/update-user.input';
-import { graphQlFindQueryOptions } from '@shared/graphql/types/graphql-filter-options';
+import { graphQlFindQueryOptions } from '@user/graphql/types/graphql-filter-options';
 import { AuthorizedRoles } from '@shared/auth/decorators/authorized-roles.decorator';
 import { UserRoles } from '@shared/auth/enums/user-roles.enum';
 import { CreateUserInput } from './graphql/inputs/create-user.input';

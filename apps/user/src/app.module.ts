@@ -1,5 +1,5 @@
-import { FirebaseAdminModule } from '@shared/firebase-admin/firebase-admin.module';
-import { graphQLFederationOptions } from '@shared/graphql/modules/graphql-federation-options.config';
+import { FirebaseAdminModule } from '@user/firebase-admin/firebase-admin.module';
+import { graphQLFederationOptions } from '@user/graphql/modules/graphql-federation-options.config';
 import { getGcpLoggerConfigAsync } from '@shared/logger/config/gcp-logger-module-async-config';
 import { LoggerModule } from '@shared/logger/logger.module';
 import { getPubSubModuleAsyncConfig } from '@shared/microservices/pub-sub/config/pub-sub-module-async-config';
