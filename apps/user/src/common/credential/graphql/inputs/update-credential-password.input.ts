@@ -3,7 +3,7 @@ import { GetCredentialByIdOrEmailInput } from './get-credential-by-id-or-email.i
 import { UpdateCredentialPasswordPayload } from './update-credential-password.payload';
 import * as joi from 'joi';
 import { validateIdWithJoi } from '@shared/validations/common/identification/mongo-id/id.validator';
-import { validateEmailWithJoi } from '@shared/validations/entities/user/email/email.validator';
+import { validateEmailWithJoi } from '@user/validations/email/email.validator';
 
 @InputType()
 export class UpdateCredentialPasswordInput {

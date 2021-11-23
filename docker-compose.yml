@@ -7,7 +7,7 @@ services:
     build:
       target: api-gateway
       context: .
-      dockerfile: ./Dockerfile
+      dockerfile: ./apps/api-gateway/Dockerfile
     external_links:
       - pubsub-emulator
     depends_on:
@@ -22,7 +22,7 @@ services:
     build:
       target: user
       context: .
-      dockerfile: ./Dockerfile
+      dockerfile: ./apps/user/Dockerfile
     external_links:
       - pubsub-emulator
     depends_on:
@@ -30,6 +30,20 @@ services:
       - api-gateway
     ports:
       - '4001:3000'
+  
+  notification-service:
+    container_name: 'notification-service'
+    restart: 'always'
+    build:
+      target: notification
+      context: .
+      dockerfile: ./apps/notification/Dockerfile
+    external_links:
+      - pubsub-emulator
+    depends_on:
+      - pubsub-emulator
+    ports:
+      - '4002:3000'
 
   pubsub-emulator:
     image: knarz/pubsub-emulator

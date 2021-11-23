@@ -1,7 +1,7 @@
-import { Types } from "mongoose";
-import { EntityNotFoundError } from "../errors/common/entity-not-found.error";
-import { FilterInput } from "../graphql/inputs/graphql-filter.input";
-import { createDocument } from "./create-document";
+import { Types } from 'mongoose';
+import { EntityNotFoundError } from '../errors/common/entity-not-found.error';
+import { FilterInput } from '../../../apps/user/src/graphql/inputs/graphql-filter.input';
+import { createDocument } from './create-document';
 
 export class CommonRepositoryTests {
   private readonly entityRepository;
@@ -13,7 +13,7 @@ export class CommonRepositoryTests {
     _entityRepository,
     _entityModel,
     _createEntityInput,
-    _createDocument?
+    _createDocument?,
   ) {
     this.entityRepository = _entityRepository;
     this.createEntityInput = _createEntityInput;
@@ -25,7 +25,7 @@ export class CommonRepositoryTests {
 
   public async getOneEntity(
     getOneEntityInput: Record<string, any>,
-    entity: any
+    entity: any,
   ) {
     //Act
     const result = await this.entityRepository.getOneEntity(getOneEntityInput);
@@ -50,7 +50,7 @@ export class CommonRepositoryTests {
   public async getOneEntityError(
     getOneEntityInput: Record<string, any> = {
       id: new Types.ObjectId().toHexString(),
-    }
+    },
   ) {
     //Act
     const result = this.entityRepository.getOneEntity(getOneEntityInput);
@@ -83,7 +83,7 @@ export class CommonRepositoryTests {
   public async createEntity() {
     //Act
     const result = await this.entityRepository.createEntity(
-      this.createEntityInput
+      this.createEntityInput,
     );
 
     //Assert
@@ -93,7 +93,7 @@ export class CommonRepositoryTests {
   public async createEntityFromPayload() {
     //Act
     const result = await this.entityRepository.createEntity(
-      this.createEntityInput
+      this.createEntityInput,
     );
 
     const expectedValue: any = { ...result.toObject() };

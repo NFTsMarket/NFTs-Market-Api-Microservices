@@ -1,5 +1,5 @@
 import { Resolver, Args, Mutation } from '@nestjs/graphql';
-import { GraphQlFieldNames } from '@shared/graphql/enums/graphql-label-types.enum';
+import { GraphQlFieldNames } from '@user/graphql/enums/graphql-label-types.enum';
 import { AuthService } from './auth.service';
 import { SignUpUserInput } from './graphql/inputs/sign-up-user.input';
 import { AuthenticationType } from './graphql/types/authentication.type';

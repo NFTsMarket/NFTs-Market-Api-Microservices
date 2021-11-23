@@ -1,4 +1,4 @@
-import { AuthTokenTypes } from '@shared/graphql/enums/auth-token-types.enum';
+import { AuthTokenTypes } from '@user/graphql/enums/auth-token-types.enum';
 import { AuthTokenRepository } from '../auth-token.repository';
 import { AuthTokenService } from '../auth-token.service';
 import { AuthToken } from '../database/auth-token.entity';

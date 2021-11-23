@@ -1,5 +1,5 @@
 import { ValidationInput } from '@shared/data/classes/validation-input.class';
-import { socialLoginValidatorWithJoi } from '@shared/validations/entities/user/social-login/social-login.validator';
+import { socialLoginValidatorWithJoi } from '@user/validations/social-login/social-login.validator';
 import { Field, InputType } from '@nestjs/graphql';
 import * as joi from 'joi';
 

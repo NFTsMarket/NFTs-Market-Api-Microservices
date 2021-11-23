@@ -1,6 +1,6 @@
 import { ValidationInput } from '@shared/data/classes/validation-input.class';
 import { InputType, Field } from '@nestjs/graphql';
-import { validatePasswordWithJoi } from '@shared/validations/entities/user/password/password.validator';
+import { validatePasswordWithJoi } from '@user/validations/password/password.validator';
 import * as joi from 'joi';
 
 @InputType()

@@ -6,11 +6,11 @@ import {
   AuthProviders,
   AuthType,
 } from 'apps/user/src/common/auth/utils/auth-providers.enum';
-import { validateEmailWithJoi } from '@shared/validations/entities/user/email/email.validator';
-import { validatePasswordWithJoi } from '@shared/validations/entities/user/password/password.validator';
+import { validateEmailWithJoi } from '@user/validations/email/email.validator';
+import { validatePasswordWithJoi } from '@user/validations/password/password.validator';
 import { validateUrlWithJoi } from '@shared/validations/common/internet/url/url.validator';
 import { UserRoles } from '@shared/auth/enums/user-roles.enum';
-import { validateUserRoleWithJoi } from '@shared/validations/entities/user/user-role/user-role.validator';
+import { validateUserRoleWithJoi } from '@user/validations/user-role/user-role.validator';
 
 @InputType()
 export class CreateUserInput extends ValidationInput {
