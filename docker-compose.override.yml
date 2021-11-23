@@ -8,5 +8,9 @@ services:
   user-service:
     volumes:
       - ./:/usr/src/app
+  
+  notification-service:
+    volumes:
+      - ./:/usr/src/app
 
   
