@@ -7,7 +7,7 @@ services:
     build:
       target: api-gateway
       context: .
-      dockerfile: ./Dockerfile.nest
+      dockerfile: ./Dockerfile
     external_links:
       - pubsub-emulator
     depends_on:
@@ -22,7 +22,7 @@ services:
     build:
       target: user
       context: .
-      dockerfile: ./Dockerfile.nest
+      dockerfile: ./Dockerfile
     external_links:
       - pubsub-emulator
     depends_on:
@@ -37,7 +37,7 @@ services:
     build:
       target: notification
       context: .
-      dockerfile: ./Dockerfile.nest
+      dockerfile: ./Dockerfile
     external_links:
       - pubsub-emulator
     depends_on:
