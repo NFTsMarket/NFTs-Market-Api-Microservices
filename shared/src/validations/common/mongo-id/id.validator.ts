@@ -1,8 +1,8 @@
-import { IDatabaseValidator } from "@shared/data/interfaces/database-validator.interface";
-import { errorMessageBuilder } from "../../../error-message-builder";
-import { isValidObjectId, Types } from "mongoose";
-import * as joi from "joi";
-import { CustomHelpers } from "joi";
+import { IDatabaseValidator } from '@shared/data/interfaces/database-validator.interface';
+import { errorMessageBuilder } from '../../error-message-builder';
+import { isValidObjectId, Types } from 'mongoose';
+import * as joi from 'joi';
+import { CustomHelpers } from 'joi';
 
 export const _validateId = (value: any): boolean => {
   try {
@@ -41,12 +41,12 @@ export const validateId: IDatabaseValidator = {
 const customIdValidator = (value: any, helpers: CustomHelpers) => {
   const condiction = _validateId(value);
   if (!condiction) {
-    return helpers.error("any.invalid");
+    return helpers.error('any.invalid');
   }
   return value;
 };
 
 export const validateIdWithJoi = joi
   .string()
-  .custom(customIdValidator, "ObjectId validator")
-  .messages({ "any.invalid": '"id" Invalid ObjectId' });
+  .custom(customIdValidator, 'ObjectId validator')
+  .messages({ 'any.invalid': '"id" Invalid ObjectId' });
