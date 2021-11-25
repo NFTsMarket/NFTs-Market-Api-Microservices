@@ -29,19 +29,19 @@ COPY --from=api-gateway-pre-build /usr/src/app/env/ ./env/
 COPY --from=api-gateway-pre-build /usr/src/app/dist/apps/api-gateway/ ./dist/apps/api-gateway/
 CMD ["dist/apps/api-gateway/main.js"]
 
-# BUILD NOTIFICATION-SERVICE
-FROM node:14-alpine AS notification-pre-build
-WORKDIR /usr/src/app
-COPY --from=base /usr/src/app/ .
-COPY --from=base /usr/apps/notification ./apps/notification
-RUN ["npm", "run", "build", "notification"]
+# # BUILD NOTIFICATION-SERVICE
+# FROM node:14-alpine AS notification-pre-build
+# WORKDIR /usr/src/app
+# COPY --from=base /usr/src/app/ .
+# COPY --from=base /usr/apps/notification ./apps/notification
+# RUN ["npm", "run", "build", "notification"]
 
-FROM gcr.io/distroless/nodejs AS notification
-WORKDIR /usr/src/app
-COPY --from=prod_node_modules /usr/src/app/node_modules/ ./node_modules/
-COPY --from=notification-pre-build /usr/src/app/env/ ./env/
-COPY --from=notification-pre-build /usr/src/app/dist/apps/notification/ ./dist/apps/notification/
-CMD ["dist/apps/notification/main.js"]
+# FROM gcr.io/distroless/nodejs AS notification
+# WORKDIR /usr/src/app
+# COPY --from=prod_node_modules /usr/src/app/node_modules/ ./node_modules/
+# COPY --from=notification-pre-build /usr/src/app/env/ ./env/
+# COPY --from=notification-pre-build /usr/src/app/dist/apps/notification/ ./dist/apps/notification/
+# CMD ["dist/apps/notification/main.js"]
 
 # BUILD USER-SERVICE
 FROM node:14-alpine AS user-pre-build
