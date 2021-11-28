@@ -1,11 +1,11 @@
-import { _validateIds } from "@shared/validations/common/identification/mongo-ids/ids.validator";
-import { Types } from "mongoose";
+import { _validateIds } from '@shared/validations/common/mongo-ids/ids.validator';
+import { Types } from 'mongoose';
 
 export const convertIdArrayToObjectIdArray = (
-  input: string[]
+  input: string[],
 ): Types.ObjectId[] | any[] => {
   if (_validateIds(input)) {
-    const ret = input.map((el) => new Types.ObjectId(el));
+    const ret = input.map(el => new Types.ObjectId(el));
 
     return ret;
   }

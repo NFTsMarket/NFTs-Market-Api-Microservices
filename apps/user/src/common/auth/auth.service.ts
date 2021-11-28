@@ -152,13 +152,13 @@ export class AuthService {
   public async resetUserPassword(
     createAuthTokenInput: CreateAuthTokenInput,
   ): Promise<boolean> {
-    return this.authTokenService.resetUserPassword(createAuthTokenInput);
+    return await this.authTokenService.resetUserPassword(createAuthTokenInput);
   }
 
   public async blockUser(
     blockUserInput: BlockUserInput,
   ): Promise<BlockUserType> {
-    return this.authRepository.blockUser(blockUserInput);
+    return await this.authRepository.blockUser(blockUserInput);
   }
 
   public async unblockUser(
@@ -179,7 +179,7 @@ export class AuthService {
   public async validateAuthToken(
     validateTokenInput: ValidateAuthTokenInput,
   ): Promise<boolean> {
-    return this.authTokenService.validateAuthToken(validateTokenInput);
+    return await this.authTokenService.validateAuthToken(validateTokenInput);
   }
 
   public async updateUserPassword(

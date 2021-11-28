@@ -38,7 +38,7 @@ export class AuthResolver {
     @Args(GraphQlFieldNames.INPUT_FIELD)
     signUpUserInput: SignUpUserInput,
   ): Promise<AuthenticationType> {
-    return this.authService.signUpUser(signUpUserInput);
+    return await this.authService.signUpUser(signUpUserInput);
   }
 
   @Public()

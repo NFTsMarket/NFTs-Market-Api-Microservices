@@ -5,8 +5,8 @@ import { welcomeMessageTemplate } from '../../templates/welcome-message.template
 export const getWelcomeNFTSMarketTemplate = (
   welcomeUserPayload: WelcomeUserPayload,
 ): IGetEmailTemplate => {
-  const { name, lastName } = welcomeUserPayload;
-  const emailTitle = `Welcome to NFTS Market!! ${name} ${lastName}`;
+  const { name } = welcomeUserPayload;
+  const emailTitle = `Welcome to NFTS Market!! ${name}`;
   const emailTemplate = welcomeMessageTemplate(welcomeUserPayload);
 
   return {

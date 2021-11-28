@@ -119,7 +119,9 @@
       "@shared/(.*)": "<rootDir>/shared/src/$1",
       "@shared": "<rootDir>/shared/src",
       "@user/(.*)": "<rootDir>/apps/user/src/$1",
-      "@user/": "<rootDir>/apps/user/src/"
+      "@user/": "<rootDir>/apps/user/src/",
+      "@notification/(.*)": "<rootDir>/apps/notification/src/$1",
+      "@notification/": "<rootDir>/apps/notification/src/"
     }
   }
 }

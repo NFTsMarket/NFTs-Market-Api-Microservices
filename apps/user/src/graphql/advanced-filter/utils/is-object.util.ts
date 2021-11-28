@@ -1,4 +1,4 @@
-import { _validateId } from "@shared/validations/common/identification/mongo-id/id.validator";
+import { _validateId } from '@shared/validations/common/mongo-id/id.validator';
 
 export const isObject = (input: any): boolean => {
   if (input === undefined || input === null) {
@@ -10,5 +10,5 @@ export const isObject = (input: any): boolean => {
     return false;
   }
 
-  return typeof input === "object";
+  return typeof input === 'object';
 };
