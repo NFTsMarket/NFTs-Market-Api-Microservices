@@ -1,6 +1,7 @@
 import { NotificationEvents } from '@shared/events/notification/notification.events';
 import {
   ConfirmUserAccountPayload,
+  InitialSetupPayload,
   ResetUserPasswordPayload,
   WelcomeUserPayload,
 } from '@shared/events/notification/notification.payload';
@@ -27,6 +28,18 @@ export class NotificationController {
     return await this.notificationService.confirmEmail(
       confirmUserAccountPayload,
     );
+  }
+
+  @MessagePattern({ type: NotificationEvents.InitialSetup })
+  public async initialSetup(
+    initialSetupPayload: InitialSetupPayload,
+  ): Promise<any> {
+    this.loggerService.log(
+      `Received this initial setup with that email ${JSON.stringify(
+        initialSetupPayload.email,
+      )}`,
+    );
+    return await this.notificationService.initialSetup(initialSetupPayload);
   }
 
   @MessagePattern({ type: NotificationEvents.ResetUserPassword })

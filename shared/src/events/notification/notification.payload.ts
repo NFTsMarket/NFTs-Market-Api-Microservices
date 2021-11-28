@@ -3,6 +3,12 @@ export class WelcomeUserPayload {
   email: string;
 }
 
+export class InitialSetupPayload {
+  name: string;
+  email: string;
+  url?: string;
+}
+
 export class ConfirmUserAccountPayload {
   name: string;
   email: string;
