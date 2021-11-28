@@ -24,6 +24,12 @@
       "@user/*": [
         "apps/user/src/*"
       ],
+       "@notification/": [
+        "apps/notification/src/"
+      ],
+      "@notification/*": [
+        "apps/notification/src/*"
+      ],
     }
   },
   "typeAcquisition": {

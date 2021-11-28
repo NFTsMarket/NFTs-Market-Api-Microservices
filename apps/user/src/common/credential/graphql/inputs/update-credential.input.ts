@@ -3,7 +3,7 @@ import { InputType, Field } from '@nestjs/graphql';
 import { GetCredentialByIdOrEmailInput } from './get-credential-by-id-or-email.input';
 import { UpdateCredentialPayload } from './update-credential.payload';
 import * as joi from 'joi';
-import { validateIdWithJoi } from '@shared/validations/common/identification/mongo-id/id.validator';
+import { validateIdWithJoi } from '@shared/validations/common/mongo-id/id.validator';
 import { validateEmailWithJoi } from '@user/validations/email/email.validator';
 
 @InputType()

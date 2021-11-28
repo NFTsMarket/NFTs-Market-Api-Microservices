@@ -3,7 +3,7 @@ import { UpdateUserPayload } from './update-user.payload';
 import { GetEntityByIdInput } from '@shared/data/classes/get-entity-by-id.class';
 import { IUpdateEntity } from '@shared/data/interfaces/update-entity.interface';
 import * as joi from 'joi';
-import { validateIdWithJoi } from '@shared/validations/common/identification/mongo-id/id.validator';
+import { validateIdWithJoi } from '@shared/validations/common/mongo-id/id.validator';
 import { ValidationInput } from '@shared/data/classes/validation-input.class';
 
 @InputType()

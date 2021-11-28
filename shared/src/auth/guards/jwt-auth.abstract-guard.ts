@@ -1,13 +1,13 @@
-import { ExecutionContext, Injectable } from "@nestjs/common";
-import { Reflector } from "@nestjs/core";
-import { AuthGuard } from "@nestjs/passport";
-import { JsonWebTokenError, TokenExpiredError } from "jsonwebtoken";
-import { ExpiredTokenError } from "@shared/errors/common/expired-token.error";
-import { MalformedTokenError } from "@shared/errors/common/malformed-token.error";
-import { GuardRequestGetter } from "../class/guard-request-getter";
+import { ExecutionContext, Injectable } from '@nestjs/common';
+import { Reflector } from '@nestjs/core';
+import { AuthGuard } from '@nestjs/passport';
+import { JsonWebTokenError, TokenExpiredError } from 'jsonwebtoken';
+import { ExpiredTokenError } from '@shared/errors/common/expired-token.error';
+import { MalformedTokenError } from '@shared/errors/common/malformed-token.error';
+import { GuardRequestGetter } from '../class/guard-request-getter';
 
 @Injectable()
-export abstract class JwtAuthGuardAbstract extends AuthGuard("jwt") {
+export abstract class JwtAuthGuardAbstract extends AuthGuard('jwt') {
   private requestGetter: GuardRequestGetter;
 
   constructor(private reflector: Reflector) {
@@ -22,7 +22,7 @@ export abstract class JwtAuthGuardAbstract extends AuthGuard("jwt") {
         throw new ExpiredTokenError();
       } else if (
         info instanceof JsonWebTokenError ||
-        info.message === "No auth token"
+        info.message === 'No auth token'
       ) {
         throw new MalformedTokenError();
       }

@@ -1,5 +1,6 @@
 import {
   ConfirmUserAccountPayload,
+  InitialSetupPayload,
   ResetUserPasswordPayload,
   WelcomeUserPayload,
 } from '@shared/events/notification/notification.payload';
@@ -11,7 +12,6 @@ import { LoggerService } from '@shared/logger/logger.service';
 import { EmailType } from './enums/email-events.enum';
 import { ConfigService } from '@nestjs/config';
 import { EnvKey } from '../config/env-key.enum';
-import { CreatedUserPayload } from '@shared/events/user/user.payload';
 
 @Injectable()
 export class NotificationService {
@@ -40,18 +40,15 @@ export class NotificationService {
   }
 
   public async initialSetup(
-    createdUserNotification: CreatedUserPayload,
+    initialSetupPayload: InitialSetupPayload,
   ): Promise<any> {
     try {
       const confirmEmailResult = await this.emailService.sendEmail(
-        this.createClientOptions(
-          createdUserNotification,
-          EmailType.CONFIRM_EMAIL,
-        ),
+        this.createClientOptions(initialSetupPayload, EmailType.CONFIRM_EMAIL),
       );
       const welcomeEmailResult = await this.emailService.sendEmail(
         this.createClientOptions(
-          createdUserNotification,
+          initialSetupPayload,
           EmailType.WELCOME_MESSAGE,
         ),
       );
