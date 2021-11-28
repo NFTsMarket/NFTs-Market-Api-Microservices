@@ -66,3 +66,36 @@ spec:
       - image: knarz/pubsub-emulator
         name: pubsub-emulator
  
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: notification-service
+spec:
+  type: ClusterIP
+  ports:
+  - name: "notification-service"
+    port: 3000
+  selector:
+    app: notification-service
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notification-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: notification-service
+  template:
+    metadata:
+      labels:
+        app: notification-service
+    spec:
+      containers:
+      - image: bujosa/ntfs:notification
+        name: notification-service

@@ -4,32 +4,52 @@ import {
   ResetUserPasswordPayload,
   WelcomeUserPayload,
 } from '@shared/events/notification/notification.payload';
-import { Controller } from '@nestjs/common';
+import { Controller, Inject, LoggerService } from '@nestjs/common';
 import { MessagePattern } from '@nestjs/microservices';
 import { NotificationService } from './notification.service';
 
 @Controller('notification')
 export class NotificationController {
-  constructor(private readonly notificationService: NotificationService) {}
+  constructor(
+    private readonly notificationService: NotificationService,
+    @Inject() private readonly loggerService: LoggerService,
+  ) {}
 
   @MessagePattern({ type: NotificationEvents.ConfirmUserAccount })
   public async confirmEmail(
     confirmUserAccountPayload: ConfirmUserAccountPayload,
   ): Promise<any> {
-    return this.notificationService.confirmEmail(confirmUserAccountPayload);
+    this.loggerService.log(
+      `Received this confirm payload with that email ${JSON.stringify(
+        confirmUserAccountPayload.email,
+      )}`,
+    );
+    return await this.notificationService.confirmEmail(
+      confirmUserAccountPayload,
+    );
   }
 
   @MessagePattern({ type: NotificationEvents.ResetUserPassword })
   public async resetPassword(
     resetUserPasswordPayload: ResetUserPasswordPayload,
   ): Promise<any> {
-    return this.notificationService.resetPassword(resetUserPasswordPayload);
+    this.loggerService.log(
+      `Received this reset payload with that email ${JSON.stringify(
+        resetUserPasswordPayload.email,
+      )}`,
+    );
+    return await this.notificationService.resetPassword(
+      resetUserPasswordPayload,
+    );
   }
 
   @MessagePattern({ type: NotificationEvents.WelcomeMessage })
   public async welcomeMessage(
     welcomeUserPayload: WelcomeUserPayload,
   ): Promise<any> {
-    return this.notificationService.welcomeMessage(welcomeUserPayload);
+    this.loggerService.log(
+      `Received this welcome payload ${JSON.stringify(welcomeUserPayload)}`,
+    );
+    return await this.notificationService.welcomeMessage(welcomeUserPayload);
   }
 }
