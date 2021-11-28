@@ -5,15 +5,16 @@ import {
   ResetUserPasswordPayload,
   WelcomeUserPayload,
 } from '@shared/events/notification/notification.payload';
-import { Controller, Inject, LoggerService } from '@nestjs/common';
+import { Controller } from '@nestjs/common';
 import { MessagePattern } from '@nestjs/microservices';
 import { NotificationService } from './notification.service';
+import { LoggerService } from '@shared/logger/logger.service';
 
 @Controller('notification')
 export class NotificationController {
   constructor(
     private readonly notificationService: NotificationService,
-    @Inject() private readonly loggerService: LoggerService,
+    private readonly loggerService: LoggerService,
   ) {}
 
   @MessagePattern({ type: NotificationEvents.ConfirmUserAccount })
