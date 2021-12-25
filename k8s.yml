@@ -27,7 +27,7 @@ spec:
     metadata:
       labels:
         app: api-gateway
-    specs:
+    spec:
       imagePullSecrets:
       - name: regcred
       containers:
@@ -65,7 +65,7 @@ spec:
     metadata:
       labels:
         app: pubsub-emulator
-    specs:
+    spec:
       containers:
       - image: knarz/pubsub-emulator
         name: pubsub-emulator
@@ -99,7 +99,7 @@ spec:
     metadata:
       labels:
         app: notification-service
-    specs:
+    spec:
       imagePullSecrets:
       - name: regcred
       containers:
@@ -135,7 +135,7 @@ spec:
     metadata:
       labels:
         app: user-service
-    specs:
+    spec:
       imagePullSecrets:
       - name: regcred
       containers:
