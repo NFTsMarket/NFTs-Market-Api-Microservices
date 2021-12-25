@@ -27,7 +27,7 @@ spec:
     metadata:
       labels:
         app: api-gateway
-    spec:
+    specs:
       imagePullSecrets:
       - name: regcred
       containers:
@@ -40,6 +40,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: pubsub-emulator
+  annotations:
+    dev.okteto.com/auto-ingress: "true"
 spec:
   type: ClusterIP
   ports:
@@ -63,7 +65,7 @@ spec:
     metadata:
       labels:
         app: pubsub-emulator
-    spec:
+    specs:
       containers:
       - image: knarz/pubsub-emulator
         name: pubsub-emulator
@@ -97,7 +99,7 @@ spec:
     metadata:
       labels:
         app: notification-service
-    spec:
+    specs:
       imagePullSecrets:
       - name: regcred
       containers:
@@ -133,7 +135,7 @@ spec:
     metadata:
       labels:
         app: user-service
-    spec:
+    specs:
       imagePullSecrets:
       - name: regcred
       containers:
