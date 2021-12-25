@@ -39,42 +39,6 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: pubsub-emulator
-  annotations:
-    dev.okteto.com/auto-ingress: "true"
-spec:
-  type: ClusterIP
-  ports:
-  - name: "pubsub-emulator"
-    port: 8085
-  selector:
-    app: pubsub-emulator
-
----
-
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: pubsub-emulator
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: pubsub-emulator
-  template:
-    metadata:
-      labels:
-        app: pubsub-emulator
-    spec:
-      containers:
-      - image: knarz/pubsub-emulator
-        name: pubsub-emulator
-
----
-
-apiVersion: v1
-kind: Service
-metadata:
   name: notification-service
 spec:
   type: ClusterIP
