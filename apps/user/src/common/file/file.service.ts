@@ -12,7 +12,10 @@ export class FileService {
   public async uploadPicture(
     uploadSelfProfilePictureInput: UploadSelfProfilePictureInput,
   ): Promise<any> {
-    const { createReadStream } = await uploadSelfProfilePictureInput.file;
+    const {
+      createReadStream,
+      filename,
+    } = await uploadSelfProfilePictureInput.file;
 
     const stream = createReadStream();
 
@@ -38,7 +41,7 @@ export class FileService {
       {
         file: buffer,
         email: uploadSelfProfilePictureInput.email,
-        filename: uploadSelfProfilePictureInput.file.filename,
+        filename,
       },
     );
   }
