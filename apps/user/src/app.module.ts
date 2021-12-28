@@ -15,6 +15,7 @@ import { CredentialModule } from './common/credential/credential.module';
 import { UserModule } from './common/user/user.module';
 import { EnvKey } from './config/env-key.enum';
 import { validateEnv } from './config/env.validator';
+import { FileModule } from './common/file/file.module';
 
 @Module({
   imports: [
@@ -55,6 +56,7 @@ import { validateEnv } from './config/env.validator';
     AuthTokenModule,
     CredentialModule,
     AuthModule,
+    FileModule,
   ],
 })
 export class AppModule {}

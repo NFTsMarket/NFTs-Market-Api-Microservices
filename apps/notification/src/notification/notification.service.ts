@@ -4,19 +4,16 @@ import {
   ResetUserPasswordPayload,
   WelcomeUserPayload,
 } from '@shared/events/notification/notification.payload';
-import { Inject, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { SendEmailOptionsDto } from '../email/dtos/send-email-options.dto';
 import { EmailService } from '../email/email.service';
 import { getEmailBody } from '../utils/get-notification-action.util';
-import { LoggerService } from '@shared/logger/logger.service';
 import { EmailType } from './enums/email-events.enum';
 import { ConfigService } from '@nestjs/config';
 import { EnvKey } from '../config/env-key.enum';
 
 @Injectable()
 export class NotificationService {
-  @Inject() private readonly loggerService: LoggerService;
-
   constructor(
     private readonly emailService: EmailService,
     private readonly configService: ConfigService,
