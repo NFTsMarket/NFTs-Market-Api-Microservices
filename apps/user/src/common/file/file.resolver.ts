@@ -6,6 +6,7 @@ import { JwtAuthGuard } from '@shared/auth/guards/jwt-auth.guard';
 import { JwtPayload } from '@shared/auth/interfaces/jwt-payload.interface';
 import { UploadSelfProfilePictureInput } from './graphql/inputs/upload-self-profile-picture.input';
 import { FileService } from './file.service';
+import { UploadUserProfilePictureInput } from './graphql/inputs/upload-user-profile-picture.input';
 
 @Resolver()
 export class FileResolver {
@@ -30,16 +31,18 @@ export class FileResolver {
     }
   }
 
-  //   public async createUser(
-  //     @Args(GraphQlFieldNames.INPUT_FIELD)
-  //     createUserInput: CreateUserInput,
-  //   ): Promise<User> {
-  //     const internalCreateUserInput: CreateUserInput = {
-  //       ...createUserInput,
-  //       authType: AuthType.PASSWORD,
-  //       socialProvider: AuthProviders.Local,
-  //     };
+  @UseGuards(JwtAuthGuard)
+  @Mutation(_returns => Boolean)
+  public async uploadUserProfilePicture(
+    @Args(GraphQlFieldNames.INPUT_FIELD)
+    uploadUserProfilePictureInput: UploadUserProfilePictureInput,
+  ): Promise<boolean> {
+    try {
+      await this.fileService.uploadPicture(uploadUserProfilePictureInput);
 
-  //     return await this.userService.createEntity(internalCreateUserInput);
-  //   }
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
 }
