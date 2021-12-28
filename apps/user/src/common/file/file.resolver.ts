@@ -7,6 +7,7 @@ import { JwtPayload } from '@shared/auth/interfaces/jwt-payload.interface';
 import { UploadSelfProfilePictureInput } from './graphql/inputs/upload-self-profile-picture.input';
 import { FileService } from './file.service';
 import { UploadUserProfilePictureInput } from './graphql/inputs/upload-user-profile-picture.input';
+import { Public } from '@shared/auth/decorators/public-resource.decorator';
 
 @Resolver()
 export class FileResolver {
@@ -31,6 +32,7 @@ export class FileResolver {
     }
   }
 
+  @Public()
   @UseGuards(JwtAuthGuard)
   @Mutation(_returns => Boolean)
   public async uploadUserProfilePicture(
