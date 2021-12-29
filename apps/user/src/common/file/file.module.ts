@@ -5,7 +5,6 @@ import { FileService } from './file.service';
 import { FileResolver } from './file.resolver';
 
 @Module({
-  imports: [],
   providers: [
     FileService,
     FileResolver,
