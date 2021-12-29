@@ -12,37 +12,40 @@ export class FileService {
   public async uploadPicture(
     uploadSelfProfilePictureInput: UploadSelfProfilePictureInput,
   ): Promise<any> {
-    const {
-      createReadStream,
-      filename,
-    } = await uploadSelfProfilePictureInput.file;
+    try {
+      const result = await uploadSelfProfilePictureInput.file;
 
-    const stream = createReadStream();
+      const filename = result.file.filename;
 
-    const chunks = [];
+      const stream = result.file.createReadStream();
 
-    const buffer = await new Promise<Buffer>((resolve, reject) => {
-      let buffer: Buffer;
+      const chunks = [];
 
-      stream.on('data', function(chunk) {
-        chunks.push(chunk);
+      const buffer = await new Promise<Buffer>((resolve, reject) => {
+        let buffer: Buffer;
+
+        stream.on('data', function(chunk) {
+          chunks.push(chunk);
+        });
+
+        stream.on('end', function() {
+          buffer = Buffer.concat(chunks);
+          resolve(buffer);
+        });
+
+        stream.on('error', reject);
       });
 
-      stream.on('end', function() {
-        buffer = Buffer.concat(chunks);
-        resolve(buffer);
-      });
-
-      stream.on('error', reject);
-    });
-
-    return await this.client.send(
-      { type: UploadEvents.UploadPicture },
-      {
-        file: buffer,
-        email: uploadSelfProfilePictureInput.email,
-        filename,
-      },
-    );
+      return await this.client.send(
+        { type: UploadEvents.UploadPicture },
+        {
+          file: buffer,
+          email: uploadSelfProfilePictureInput.email,
+          filename,
+        },
+      );
+    } catch (err) {
+      throw err;
+    }
   }
 }
