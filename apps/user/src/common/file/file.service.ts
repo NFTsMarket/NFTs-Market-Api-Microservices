@@ -48,4 +48,22 @@ export class FileService {
       throw err;
     }
   }
+
+  public async fileUpload(
+    file: Express.Multer.File,
+    email: string,
+  ): Promise<any> {
+    try {
+      return await this.client.send(
+        { type: UploadEvents.UploadPicture },
+        {
+          file: file.buffer,
+          email,
+          filename: file.originalname,
+        },
+      );
+    } catch (err) {
+      throw err;
+    }
+  }
 }
