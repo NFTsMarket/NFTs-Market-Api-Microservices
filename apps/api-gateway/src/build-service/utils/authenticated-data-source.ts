@@ -1,6 +1,6 @@
-import { RemoteGraphQLDataSource } from '@apollo/gateway';
+import FileUploadDataSource from '@profusion/apollo-federation-upload';
 
-export class AuthenticatedDataSource extends RemoteGraphQLDataSource {
+export class AuthenticatedDataSource extends FileUploadDataSource {
   async willSendRequest({ request, context }) {
     request.http.headers = {
       ...request.http.headers,
