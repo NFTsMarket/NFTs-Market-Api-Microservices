@@ -10,12 +10,12 @@ import { EnvKey } from './config/env-key.enum';
 import { JoiValidationPipe } from '@user/pipes/joi-validation.pipe';
 import { CustomExceptionsFilter } from '@shared/errors/exception-filters/custom.exception-filter';
 import { HttpExceptionHandler } from '@shared/errors/http-exception-handler';
-import { graphqlUploadExpress } from 'graphql-upload';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  app.use(graphqlUploadExpress({ maxFileSize: 1000000, maxFiles: 1 }));
+  // Activate if you wanna use graphql upload server
+  // app.use(graphqlUploadExpress({ maxFileSize: 1000000, maxFiles: 1 }));
 
   const loggerService = app.get(LoggerService);
 

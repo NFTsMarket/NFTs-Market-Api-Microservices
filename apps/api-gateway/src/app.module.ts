@@ -16,6 +16,7 @@ import { formatGqlApiGatewayError } from './graphql/format-api-gateway-error';
       useFactory: async () => ({
         server: {
           cors: true,
+          uploads: false,
           engine: {
             apiKey: process.env.APOLLO_KEY,
             graphVariant: process.env.GRAPH_VARIANT,

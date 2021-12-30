@@ -11,7 +11,8 @@ import { AuthenticatedDataSource } from './utils/authenticated-data-source';
     {
       provide: GATEWAY_BUILD_SERVICE,
       useFactory: AuthenticatedDataSource => {
-        return ({ url }) => new AuthenticatedDataSource({ url });
+        return ({ url }) =>
+          new AuthenticatedDataSource({ url, useChunkedTransfer: true });
       },
       inject: [AuthenticatedDataSource],
     },
