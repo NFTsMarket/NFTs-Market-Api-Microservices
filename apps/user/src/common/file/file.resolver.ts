@@ -33,7 +33,6 @@ export class FileResolver {
   }
 
   @Public()
-  @UseGuards(JwtAuthGuard)
   @Mutation(_returns => Boolean)
   public async uploadUserProfilePicture(
     @Args(GraphQlFieldNames.INPUT_FIELD)
