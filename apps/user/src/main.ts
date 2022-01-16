@@ -14,6 +14,8 @@ import { HttpExceptionHandler } from '@shared/errors/http-exception-handler';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  app.enableCors();
+
   // Activate if you wanna use graphql upload server
   // app.use(graphqlUploadExpress({ maxFileSize: 1000000, maxFiles: 1 }));
 
