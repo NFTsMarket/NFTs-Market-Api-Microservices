@@ -4,12 +4,12 @@ on:
   pull_request:
     branches:
       - "develop"
+      - "main"
 
 jobs:
   changes:
     runs-on: ubuntu-latest
     outputs:
-      # Expose matched filters as job 'packages' output variable
       apps: ${{ steps.filter.outputs.changes }}
     steps:
       - uses: actions/checkout@v2
