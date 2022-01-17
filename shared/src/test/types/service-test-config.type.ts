@@ -3,7 +3,7 @@ import {
   ForwardReference,
   Provider,
   Type,
-} from "@nestjs/common";
+} from '@nestjs/common';
 
 export type ServiceTestConfigType = {
   EntityService: any;

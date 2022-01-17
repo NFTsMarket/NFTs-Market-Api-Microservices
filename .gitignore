@@ -44,3 +44,5 @@ env/*.json
 # Kubernetes env
 *.configmap.yaml
 
+#Coverages
+coverage

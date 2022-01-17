@@ -1,8 +1,8 @@
-import { InvalidLimitInputError } from "@shared/errors/filters/invalid-limit-input.error";
+import { InvalidLimitInputError } from '@shared/errors/filters/invalid-limit-input.error';
 
 export const limitAggregationPipelineBuilder = (
   pipeline: any[],
-  limit: number
+  limit: number,
 ) => {
   if (!limit) {
     return pipeline;

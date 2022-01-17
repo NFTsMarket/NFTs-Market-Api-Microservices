@@ -1,10 +1,10 @@
-import { InvalidSortQueryError } from "@shared/errors/filters/invalid-sort-query.error";
-import { getGraphqlSortOperation } from "../../../utils/get-graphql-sort-operation.util";
-import { isObject } from "../../../utils/is-object.util";
-import { getMongoSortOperation } from "./get-mongo-sort-operation.util";
+import { InvalidSortQueryError } from '@shared/errors/filters/invalid-sort-query.error';
+import { getGraphqlSortOperation } from '../../../utils/get-graphql-sort-operation.util';
+import { isObject } from '../../../utils/is-object.util';
+import { getMongoSortOperation } from './get-mongo-sort-operation.util';
 
 export const sortQueryBuilder = (
-  sortOptions: Record<string, any>
+  sortOptions: Record<string, any>,
 ): Record<string, any> => {
   if (!sortOptions) {
     return {};

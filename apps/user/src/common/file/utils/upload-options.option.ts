@@ -1,4 +1,4 @@
-import { MulterOptions } from "@nestjs/platform-express/multer/interfaces/multer-options.interface";
+import { MulterOptions } from '@nestjs/platform-express/multer/interfaces/multer-options.interface';
 
 export const uploadOptions: MulterOptions = {
   limits: {

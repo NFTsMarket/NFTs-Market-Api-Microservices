@@ -1,6 +1,6 @@
-import { IDatabaseValidator } from "@shared/data/interfaces/database-validator.interface";
-import { invalidPasswordMessage } from "./message/invalid-password-message";
-import * as joi from "joi";
+import { IDatabaseValidator } from '@shared/data/interfaces/database-validator.interface';
+import { invalidPasswordMessage } from './message/invalid-password-message';
+import * as joi from 'joi';
 
 export const _validatePassword = (value: string): boolean => {
   if (!value) {

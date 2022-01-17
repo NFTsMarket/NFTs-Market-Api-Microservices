@@ -1,5 +1,5 @@
-import { InvalidEventPatternError } from "@shared/errors/microservices/invalid-event-pattern.error";
-import { MaximumEventPatternDepthError } from "@shared/errors/microservices/maximum-event-pattern-depth.error";
+import { InvalidEventPatternError } from '@shared/errors/microservices/invalid-event-pattern.error';
+import { MaximumEventPatternDepthError } from '@shared/errors/microservices/maximum-event-pattern-depth.error';
 
 export const normalizeEventPattern = (eventPattern: string): string => {
   if (!eventPattern) {
@@ -18,7 +18,7 @@ const buildNormalizedPattern = (_parsedPattern, maxDepth = 2): string => {
 
   const parsedPattern = JSON.parse(_parsedPattern);
 
-  if (typeof parsedPattern === "string") {
+  if (typeof parsedPattern === 'string') {
     return parsedPattern;
   }
 
@@ -27,10 +27,10 @@ const buildNormalizedPattern = (_parsedPattern, maxDepth = 2): string => {
   const patternKeys = Object.keys(parsedPattern);
 
   for (const key of patternKeys) {
-    if (typeof parsedPattern[key] === "object") {
+    if (typeof parsedPattern[key] === 'object') {
       const normalizedSubPattern = buildNormalizedPattern(
         JSON.stringify(parsedPattern[key]),
-        maxDepth - 1
+        maxDepth - 1,
       );
 
       splittedPattern.push(`${key}-${normalizedSubPattern}`);
@@ -43,11 +43,11 @@ const buildNormalizedPattern = (_parsedPattern, maxDepth = 2): string => {
     }
   }
 
-  const normalizedPattern = splittedPattern.join("-");
+  const normalizedPattern = splittedPattern.join('-');
 
   return normalizedPattern;
 };
 
 const isValidPatternValue = (value: any) => {
-  return typeof value === "string" || typeof value === "number";
+  return typeof value === 'string' || typeof value === 'number';
 };

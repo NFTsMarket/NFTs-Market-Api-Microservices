@@ -1,11 +1,11 @@
-import { Error as MongooseErrors } from "mongoose";
-import { IErrorDetail } from "@shared/errors/base-error.abstract";
-import { formatMongooseValidationError } from "../format-mongoose-validation-error.util";
+import { Error as MongooseErrors } from 'mongoose';
+import { IErrorDetail } from '@shared/errors/base-error.abstract';
+import { formatMongooseValidationError } from '../format-mongoose-validation-error.util';
 
-describe("FormatMongooseValidationError", () => {
-  const errorMessage = "Something went wrong";
+describe('FormatMongooseValidationError', () => {
+  const errorMessage = 'Something went wrong';
 
-  it("should return an empty array given null", () => {
+  it('should return an empty array given null', () => {
     // arrange
 
     // act
@@ -14,7 +14,7 @@ describe("FormatMongooseValidationError", () => {
     expect(res).toEqual([]);
   });
 
-  it("should return an empty array given undefined", () => {
+  it('should return an empty array given undefined', () => {
     // arrange
 
     // act
@@ -23,7 +23,7 @@ describe("FormatMongooseValidationError", () => {
     expect(res).toEqual([]);
   });
 
-  it("should skip values that are in the skip map", () => {
+  it('should skip values that are in the skip map', () => {
     // arrange
     const input = {
       errors: {
@@ -35,7 +35,7 @@ describe("FormatMongooseValidationError", () => {
 
     // act
     const res = formatMongooseValidationError(
-      (input as unknown) as MongooseErrors.ValidationError
+      (input as unknown) as MongooseErrors.ValidationError,
     );
     // assert
     expect(res).toEqual([]);
@@ -52,7 +52,7 @@ describe("FormatMongooseValidationError", () => {
 
     const expectedResult: IErrorDetail[] = [
       {
-        field: "name",
+        field: 'name',
         message: errorMessage,
       },
     ];
@@ -74,7 +74,7 @@ describe("FormatMongooseValidationError", () => {
 
     const expectedResult: IErrorDetail[] = [
       {
-        field: "name",
+        field: 'name',
         message: errorMessage,
       },
     ];
@@ -83,15 +83,15 @@ describe("FormatMongooseValidationError", () => {
   };
 
   it.each([firstTestCase(), secondTestCase()])(
-    "should return an array of IErrorDetail",
+    'should return an array of IErrorDetail',
     (input, expectedResult) => {
       // act
       const res = formatMongooseValidationError(
-        (input as unknown) as MongooseErrors.ValidationError
+        (input as unknown) as MongooseErrors.ValidationError,
       );
 
       // assert
       expect(res).toEqual(expectedResult);
-    }
+    },
   );
 });

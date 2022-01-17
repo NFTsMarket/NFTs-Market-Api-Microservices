@@ -3,8 +3,8 @@ import {
   ForwardReference,
   Provider,
   Type,
-} from "@nestjs/common";
-import { ModelDefinition } from "@nestjs/mongoose";
+} from '@nestjs/common';
+import { ModelDefinition } from '@nestjs/mongoose';
 
 export type RepositoryTestConfigType = {
   Entity: any;

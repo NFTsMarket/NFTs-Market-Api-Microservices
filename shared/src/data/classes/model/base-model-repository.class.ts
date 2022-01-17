@@ -1,13 +1,13 @@
-import { GetEntityByIdInput } from "@shared/data/classes/get-entity-by-id.class";
-import { Repository } from "@shared/data/classes/repository.class";
-import { EntityNotFoundError } from "@shared/errors/common/entity-not-found.error";
-import { createEntityLog } from "@shared/functions/log-message-builder";
-import { updateEntities } from "@shared/functions/update-entities";
-import { validateAndGenerateSlug } from "@shared/functions/validate-and-generate-slug";
-import { Injectable } from "@nestjs/common";
-import { InjectConnection } from "@nestjs/mongoose";
-import { Connection, Model } from "mongoose";
-import { BaseRepositoryType } from "../../interfaces/base-repository-type.interface";
+import { GetEntityByIdInput } from '@shared/data/classes/get-entity-by-id.class';
+import { Repository } from '@shared/data/classes/repository.class';
+import { EntityNotFoundError } from '@shared/errors/common/entity-not-found.error';
+import { createEntityLog } from '@shared/functions/log-message-builder';
+import { updateEntities } from '@shared/functions/update-entities';
+import { validateAndGenerateSlug } from '@shared/functions/validate-and-generate-slug';
+import { Injectable } from '@nestjs/common';
+import { InjectConnection } from '@nestjs/mongoose';
+import { Connection, Model } from 'mongoose';
+import { BaseRepositoryType } from '../../interfaces/base-repository-type.interface';
 
 @Injectable()
 export abstract class BaseModelRepository<
@@ -19,14 +19,14 @@ export abstract class BaseModelRepository<
   constructor(
     private readonly _modelModel: Model<any>,
     private readonly _brandModel: Model<any>,
-    entityName: string
+    entityName: string,
   ) {
     super(_modelModel, entityName);
   }
 
   public async createEntity(
-    createEntityInput: T["createEntityInput"]
-  ): Promise<T["entity"]> {
+    createEntityInput: T['createEntityInput'],
+  ): Promise<T['entity']> {
     const session = await this.connection.startSession();
     session.startTransaction();
 
@@ -37,7 +37,7 @@ export abstract class BaseModelRepository<
       const slug = validateAndGenerateSlug(
         this._modelModel,
         this.slugConfig,
-        createEntityInput
+        createEntityInput,
       );
 
       const model = new this._modelModel({
@@ -49,7 +49,7 @@ export abstract class BaseModelRepository<
 
       const brandToUpdate = await this.addModelToBrand(
         brand,
-        createEntityInput.id ? createEntityInput.id : model._id
+        createEntityInput.id ? createEntityInput.id : model._id,
       );
 
       await brandToUpdate.save({ session });
@@ -70,8 +70,8 @@ export abstract class BaseModelRepository<
 
   //TODO: Fix version field on where (decrease 1)
   public async updateEntity(
-    updateEntityInput: T["updateEntityInput"]
-  ): Promise<T["entity"]> {
+    updateEntityInput: T['updateEntityInput'],
+  ): Promise<T['entity']> {
     const session = await this.connection.startSession();
     session.startTransaction();
 
@@ -83,10 +83,10 @@ export abstract class BaseModelRepository<
 
       //TODO: Make this work with all the slugConfig keys
       if (data[this.slugConfig.keys[0]]) {
-        updateEntity["slug"] = validateAndGenerateSlug(
+        updateEntity['slug'] = validateAndGenerateSlug(
           this._modelModel,
           this.slugConfig,
-          data
+          data,
         );
       }
 
@@ -99,7 +99,7 @@ export abstract class BaseModelRepository<
       if (brand && brand != model.brand.id) {
         const oldBrand = await this.removeModelFromBrand(
           model.brand.id,
-          model._id
+          model._id,
         );
 
         const newBrand = await this.addModelToBrand(brand, model._id);
@@ -124,8 +124,8 @@ export abstract class BaseModelRepository<
   }
 
   public async deleteEntity(
-    deleteEntityInput: GetEntityByIdInput
-  ): Promise<T["entity"]> {
+    deleteEntityInput: GetEntityByIdInput,
+  ): Promise<T['entity']> {
     const session = await this.connection.startSession();
     session.startTransaction();
 
@@ -141,7 +141,7 @@ export abstract class BaseModelRepository<
 
       const brandToUpdate = await this.removeModelFromBrand(
         model.brand.id,
-        model._id
+        model._id,
       );
 
       await brandToUpdate.save({ session });
@@ -165,9 +165,9 @@ export abstract class BaseModelRepository<
       id: brandId,
     });
 
-    let modelsId = brand.models.map((model) => model._id);
+    let modelsId = brand.models.map(model => model._id);
 
-    modelsId = modelsId.filter((value) => !value._id.equals(modelId));
+    modelsId = modelsId.filter(value => !value._id.equals(modelId));
 
     brand.set({ models: modelsId });
 
@@ -179,7 +179,7 @@ export abstract class BaseModelRepository<
       id: brandId,
     });
 
-    const modelsId = brand.models.map((model) => model._id);
+    const modelsId = brand.models.map(model => model._id);
 
     modelsId.push(modelId);
 

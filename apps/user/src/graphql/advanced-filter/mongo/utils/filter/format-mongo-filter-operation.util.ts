@@ -1,18 +1,18 @@
-import { MissingRequiredParametersError } from "@shared/errors/common/missing-required-parameters.error";
-import { IFormatMongooperationInput } from "../../../interfaces/format-mongo-operation-input.interface";
-import { MongoFilterOperationEnum } from "../../enum/mongo-filter-operation.enum";
-import { convertIdArrayToObjectIdArray } from "../common/convert-id-arry-to-object-id-array.util";
-import { convertIdToObjectId } from "../common/convert-id-to-object-id.util";
-import { formatMongoRegexOperation } from "./format-mongo-regex-operation.util";
-import { formatTextSearchOperation } from "./format-text-search-operation.util";
+import { MissingRequiredParametersError } from '@shared/errors/common/missing-required-parameters.error';
+import { IFormatMongooperationInput } from '../../../interfaces/format-mongo-operation-input.interface';
+import { MongoFilterOperationEnum } from '../../enum/mongo-filter-operation.enum';
+import { convertIdArrayToObjectIdArray } from '../common/convert-id-arry-to-object-id-array.util';
+import { convertIdToObjectId } from '../common/convert-id-to-object-id.util';
+import { formatMongoRegexOperation } from './format-mongo-regex-operation.util';
+import { formatTextSearchOperation } from './format-text-search-operation.util';
 
 export const formatMongoFilterOperation = (
-  options: IFormatMongooperationInput
+  options: IFormatMongooperationInput,
 ): Record<string, any> => {
   const { gqlOperation, mongoOperation, value, fieldName } = options;
 
   if (!gqlOperation || !mongoOperation || !fieldName) {
-    throw new MissingRequiredParametersError("formatMongoFilterOperation");
+    throw new MissingRequiredParametersError('formatMongoFilterOperation');
   }
 
   const formattedOperation = {};
@@ -39,9 +39,9 @@ const getFormattedNonIdValue = (value): any => {
 };
 
 const isIdFilterField = (fieldName: string) => {
-  const splittedFieldName = fieldName.split(".");
+  const splittedFieldName = fieldName.split('.');
 
   const fieldToCheck = splittedFieldName.pop();
 
-  return fieldToCheck === "id";
+  return fieldToCheck === 'id';
 };

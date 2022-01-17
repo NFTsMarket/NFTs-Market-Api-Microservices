@@ -1,13 +1,13 @@
-import { InvalidSearchValueError } from "@shared/errors/filters/invalid-search-value.error";
+import { InvalidSearchValueError } from '@shared/errors/filters/invalid-search-value.error';
 
 export const formatTextSearchOperation = (value: string) => {
   if (!value) {
     return {
-      $search: "",
+      $search: '',
     };
   }
 
-  if (typeof value !== "string") {
+  if (typeof value !== 'string') {
     throw new InvalidSearchValueError(value);
   }
 

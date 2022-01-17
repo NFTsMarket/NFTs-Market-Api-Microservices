@@ -48,6 +48,7 @@
     "graphql-tools": "^7.0.1",
     "graphql-type-json": "^0.3.2",
     "graphql-upload": "^11.0.0",
+    "http-proxy-middleware": "^2.0.1",
     "joi": "^17.4.2",
     "mongoose": "^6.0.9",
     "ms": "^2.1.3",

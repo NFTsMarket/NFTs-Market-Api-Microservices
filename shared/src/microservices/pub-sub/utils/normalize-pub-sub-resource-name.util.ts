@@ -1,8 +1,8 @@
-import { InvalidPubSubResourceNameError } from "@shared/errors/pub-sub/invalid-pub-sub-resource-name.error";
+import { InvalidPubSubResourceNameError } from '@shared/errors/pub-sub/invalid-pub-sub-resource-name.error';
 
 export const normalizePubSubResourceName = (
   topicName: string,
-  seeds: string[] = []
+  seeds: string[] = [],
 ) => {
   if (!topicName) {
     throw new InvalidPubSubResourceNameError(topicName);
@@ -15,17 +15,17 @@ export const normalizePubSubResourceName = (
 
 const _getNormalizedPubSubResourceName = (
   topicName: string,
-  seeds: string[]
+  seeds: string[],
 ): string => {
   const parsedPattern = JSON.parse(topicName);
 
-  if (typeof parsedPattern === "string") {
+  if (typeof parsedPattern === 'string') {
     return _buildNormalizedPubSubResourceName(parsedPattern, seeds);
   }
 
   const { type } = parsedPattern;
 
-  if (!type || typeof type !== "string") {
+  if (!type || typeof type !== 'string') {
     throw new InvalidPubSubResourceNameError(topicName);
   }
 
@@ -34,9 +34,9 @@ const _getNormalizedPubSubResourceName = (
 
 const _buildNormalizedPubSubResourceName = (
   topicName: string,
-  seeds: string[]
+  seeds: string[],
 ) => {
-  const topicSource = [...seeds, ...topicName.split(" ")];
+  const topicSource = [...seeds, ...topicName.split(' ')];
 
-  return topicSource.join("-");
+  return topicSource.join('-');
 };
