@@ -1,4 +1,4 @@
-import { EntityRepositoryType } from "@shared/test/types/entity-repository.type";
+import { EntityRepositoryType } from '@shared/test/types/entity-repository.type';
 
 export const entityRepository: EntityRepositoryType = {
   getOneEntity: jest.fn(),

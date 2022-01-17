@@ -1,8 +1,8 @@
-import { Env } from "@shared/config/env.enum";
-import { BaseError } from "../base-error.abstract";
+import { Env } from '@shared/config/env.enum';
+import { BaseError } from '../base-error.abstract';
 
 export class MissingRequiredParametersError extends BaseError {
-  constructor(functionName = "function") {
+  constructor(functionName = 'function') {
     super();
 
     Object.setPrototypeOf(this, MissingRequiredParametersError.prototype);

@@ -1,6 +1,6 @@
-import { IErrorDetail } from "../../base-error.abstract";
-import * as joi from "joi";
-import { capitalize } from "@shared/functions/text/capitalize";
+import { IErrorDetail } from '../../base-error.abstract';
+import * as joi from 'joi';
+import { capitalize } from '@shared/functions/text/capitalize';
 
 /**
  * Takes an instance of joi.ValidationError and converts it into an IErrorDetail[]
@@ -10,7 +10,7 @@ import { capitalize } from "@shared/functions/text/capitalize";
  *
  */
 export const formatJoiValidationError = (
-  error: joi.ValidationError
+  error: joi.ValidationError,
 ): IErrorDetail[] => {
   if (!error) {
     return [];
@@ -24,7 +24,7 @@ export const formatJoiValidationError = (
     const errorDetail: IErrorDetail = {
       field: currErr.message.split('"')[1],
       message: capitalize(
-        currErr.message.replace(`"${currErr.message.split('"')[1]}" `, "")
+        currErr.message.replace(`"${currErr.message.split('"')[1]}" `, ''),
       ),
     };
 

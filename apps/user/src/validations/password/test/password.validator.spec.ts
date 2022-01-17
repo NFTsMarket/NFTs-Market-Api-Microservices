@@ -30,12 +30,12 @@ describe('ValidatePassword', () => {
     expect(res).toBe(false);
   });
 
-  it.each([
-    ['mytestpassword'],
-    ['123456'],
-  ])('should return true if given a valid password = "%s"', val => {
-    const res = _validatePassword(val);
+  it.each([['mytestpassword'], ['123456']])(
+    'should return true if given a valid password = "%s"',
+    val => {
+      const res = _validatePassword(val);
 
-    expect(res).toBe(true);
-  });
+      expect(res).toBe(true);
+    },
+  );
 });

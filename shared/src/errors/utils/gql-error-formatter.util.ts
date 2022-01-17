@@ -1,8 +1,8 @@
-import { Env } from "@shared/config/env.enum";
-import { GraphQLError } from "graphql";
-import { BaseError, IErrorDetail } from "../base-error.abstract";
-import { InternalServerError } from "../common/internal-server.error";
-import { ErrorCode } from "../enums/error-code.enum";
+import { Env } from '@shared/config/env.enum';
+import { GraphQLError } from 'graphql';
+import { BaseError, IErrorDetail } from '../base-error.abstract';
+import { InternalServerError } from '../common/internal-server.error';
+import { ErrorCode } from '../enums/error-code.enum';
 
 export interface IGqlError {
   code: ErrorCode;
@@ -24,7 +24,7 @@ export const gqlErrorFormatter = (err: GraphQLError): IGqlError => {
 
 const _baseErrorFormatter = (
   err: GraphQLError,
-  isProdEnv = false
+  isProdEnv = false,
 ): IGqlError => {
   const { originalError, extensions } = err;
   const { code, errors, message } = originalError as BaseError;
@@ -39,7 +39,7 @@ const _baseErrorFormatter = (
 
 const _internalServerErrorFormatter = (
   err: GraphQLError,
-  isProdEnv = false
+  isProdEnv = false,
 ): IGqlError => {
   const { message, extensions } = err;
 

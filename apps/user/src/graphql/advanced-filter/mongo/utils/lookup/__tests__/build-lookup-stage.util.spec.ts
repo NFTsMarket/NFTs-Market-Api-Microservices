@@ -1,10 +1,10 @@
-import { buildLookupStage } from "../build-lookup-stage.util";
-import * as faker from "faker";
-import { IBuildLookupStageInput } from "../../../../interfaces/build-lookup-stage-input.inteface";
-import { MissingRequiredParametersError } from "@shared/errors/common/missing-required-parameters.error";
+import { buildLookupStage } from '../build-lookup-stage.util';
+import * as faker from 'faker';
+import { IBuildLookupStageInput } from '../../../../interfaces/build-lookup-stage-input.inteface';
+import { MissingRequiredParametersError } from '@shared/errors/common/missing-required-parameters.error';
 
-describe("BuildLookupStage", () => {
-  it("should throw an error if the collection option is null", () => {
+describe('BuildLookupStage', () => {
+  it('should throw an error if the collection option is null', () => {
     // arrange
     const input: IBuildLookupStageInput = {
       collection: null,
@@ -14,11 +14,11 @@ describe("BuildLookupStage", () => {
 
     // act & assert
     expect(() => buildLookupStage(input)).toThrow(
-      MissingRequiredParametersError
+      MissingRequiredParametersError,
     );
   });
 
-  it("should throw an error if the collection option is undefined", () => {
+  it('should throw an error if the collection option is undefined', () => {
     // arrange
     const input: IBuildLookupStageInput = {
       collection: undefined,
@@ -28,25 +28,25 @@ describe("BuildLookupStage", () => {
 
     // act & assert
     expect(() => buildLookupStage(input)).toThrow(
-      MissingRequiredParametersError
+      MissingRequiredParametersError,
     );
   });
 
-  it("should throw an error if the collection option is empty", () => {
+  it('should throw an error if the collection option is empty', () => {
     // arrange
     const input: IBuildLookupStageInput = {
-      collection: "",
+      collection: '',
       localField: faker.random.alpha(),
       outputField: faker.random.alpha(),
     };
 
     // act & assert
     expect(() => buildLookupStage(input)).toThrow(
-      MissingRequiredParametersError
+      MissingRequiredParametersError,
     );
   });
 
-  it("should throw an error if the localField option is null", () => {
+  it('should throw an error if the localField option is null', () => {
     // arrange
     const input: IBuildLookupStageInput = {
       collection: faker.random.alpha(),
@@ -56,11 +56,11 @@ describe("BuildLookupStage", () => {
 
     // act & assert
     expect(() => buildLookupStage(input)).toThrow(
-      MissingRequiredParametersError
+      MissingRequiredParametersError,
     );
   });
 
-  it("should throw an error if the localField option is undefined", () => {
+  it('should throw an error if the localField option is undefined', () => {
     // arrange
     const input: IBuildLookupStageInput = {
       collection: faker.random.alpha(),
@@ -70,25 +70,25 @@ describe("BuildLookupStage", () => {
 
     // act & assert
     expect(() => buildLookupStage(input)).toThrow(
-      MissingRequiredParametersError
+      MissingRequiredParametersError,
     );
   });
 
-  it("should throw an error if the localField option is empty", () => {
+  it('should throw an error if the localField option is empty', () => {
     // arrange
     const input: IBuildLookupStageInput = {
       collection: faker.random.alpha(),
-      localField: "",
+      localField: '',
       outputField: faker.random.alpha(),
     };
 
     // act & assert
     expect(() => buildLookupStage(input)).toThrow(
-      MissingRequiredParametersError
+      MissingRequiredParametersError,
     );
   });
 
-  it("should throw an error if the outputField option is null", () => {
+  it('should throw an error if the outputField option is null', () => {
     // arrange
     const input: IBuildLookupStageInput = {
       collection: faker.random.alpha(),
@@ -98,11 +98,11 @@ describe("BuildLookupStage", () => {
 
     // act & assert
     expect(() => buildLookupStage(input)).toThrow(
-      MissingRequiredParametersError
+      MissingRequiredParametersError,
     );
   });
 
-  it("should throw an error if the outputField option is undefined", () => {
+  it('should throw an error if the outputField option is undefined', () => {
     // arrange
     const input: IBuildLookupStageInput = {
       collection: faker.random.alpha(),
@@ -112,25 +112,25 @@ describe("BuildLookupStage", () => {
 
     // act & assert
     expect(() => buildLookupStage(input)).toThrow(
-      MissingRequiredParametersError
+      MissingRequiredParametersError,
     );
   });
 
-  it("should throw an error if the outputField option is empty", () => {
+  it('should throw an error if the outputField option is empty', () => {
     // arrange
     const input: IBuildLookupStageInput = {
       collection: faker.random.alpha(),
       localField: faker.random.alpha(),
-      outputField: "",
+      outputField: '',
     };
 
     // act & assert
     expect(() => buildLookupStage(input)).toThrow(
-      MissingRequiredParametersError
+      MissingRequiredParametersError,
     );
   });
 
-  it("should return a lookup stage", () => {
+  it('should return a lookup stage', () => {
     // arrange
     const input: IBuildLookupStageInput = {
       collection: faker.random.alpha(),

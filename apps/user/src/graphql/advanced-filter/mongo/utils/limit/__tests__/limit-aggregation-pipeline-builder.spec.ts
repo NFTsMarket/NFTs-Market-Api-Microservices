@@ -1,8 +1,8 @@
-import { InvalidLimitInputError } from "@shared/errors/filters/invalid-limit-input.error";
-import { limitAggregationPipelineBuilder } from "../limit-aggregation-pipeline-builder";
+import { InvalidLimitInputError } from '@shared/errors/filters/invalid-limit-input.error';
+import { limitAggregationPipelineBuilder } from '../limit-aggregation-pipeline-builder';
 
-describe("limitAggregationPipelineBuilder", () => {
-  it("should throw an error if given null", () => {
+describe('limitAggregationPipelineBuilder', () => {
+  it('should throw an error if given null', () => {
     // act
     const res = limitAggregationPipelineBuilder([], null);
 
@@ -10,7 +10,7 @@ describe("limitAggregationPipelineBuilder", () => {
     expect(res).toEqual([]);
   });
 
-  it("should throw an error if given undefined", () => {
+  it('should throw an error if given undefined', () => {
     // act
     const res = limitAggregationPipelineBuilder([], undefined);
 
@@ -18,19 +18,16 @@ describe("limitAggregationPipelineBuilder", () => {
     expect(res).toEqual([]);
   });
 
-  it.each([[10.7], [11.9]])(
-    "should throw an error if given a float",
-    (input) => {
-      // arrange & act & assert
-      expect(() => limitAggregationPipelineBuilder([], input)).toThrow(
-        InvalidLimitInputError
-      );
-    }
-  );
+  it.each([[10.7], [11.9]])('should throw an error if given a float', input => {
+    // arrange & act & assert
+    expect(() => limitAggregationPipelineBuilder([], input)).toThrow(
+      InvalidLimitInputError,
+    );
+  });
 
   it.each([[10], [15], [90]])(
-    "should return the corresponding limit stage",
-    (input) => {
+    'should return the corresponding limit stage',
+    input => {
       // arrange
       const expectedResult = {
         $limit: input,
@@ -41,6 +38,6 @@ describe("limitAggregationPipelineBuilder", () => {
 
       // assert
       expect(res).toEqual(expectedResult);
-    }
+    },
   );
 });

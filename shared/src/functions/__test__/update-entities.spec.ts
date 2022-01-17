@@ -1,7 +1,7 @@
-import { updateEntities } from "../update-entities";
+import { updateEntities } from '../update-entities';
 
-describe("Update entities", () => {
-  it("returns an object with an updatedAt field if the object given as input has no fields", () => {
+describe('Update entities', () => {
+  it('returns an object with an updatedAt field if the object given as input has no fields', () => {
     const data = {};
 
     const updateObject = updateEntities(data);
@@ -10,7 +10,7 @@ describe("Update entities", () => {
     expect(updateObject.updatedAt).not.toBeUndefined();
   });
 
-  it("returns an object that does not have undefined or null fields", () => {
+  it('returns an object that does not have undefined or null fields', () => {
     const cargoValue = 20;
 
     const data = {
@@ -26,7 +26,7 @@ describe("Update entities", () => {
     expect(updatedObject.price).toBeUndefined();
   });
 
-  it("returns an object with falsy values that are not undefined or null", () => {
+  it('returns an object with falsy values that are not undefined or null', () => {
     const cargoValue = 20;
     const isSoldValue = false;
     const discountValue = 0;

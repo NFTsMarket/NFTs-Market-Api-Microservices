@@ -1,6 +1,6 @@
-import { IDatabaseValidator } from "@shared/data/interfaces/database-validator.interface";
-import validator from "validator";
-import { errorMessageBuilder } from "../../../error-message-builder";
+import { IDatabaseValidator } from '@shared/data/interfaces/database-validator.interface';
+import validator from 'validator';
+import { errorMessageBuilder } from '../../../error-message-builder';
 
 export const _validateUrlNullable = (value: string): boolean => {
   if (value === null || value === undefined) {

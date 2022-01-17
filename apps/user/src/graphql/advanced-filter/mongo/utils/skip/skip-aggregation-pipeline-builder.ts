@@ -1,8 +1,8 @@
-import { InvalidStartInputError } from "@shared/errors/filters/invalid-start-input.error";
+import { InvalidStartInputError } from '@shared/errors/filters/invalid-start-input.error';
 
 export const skipAggregationPipelineBuilder = (
   pipeline: any[],
-  skip: number
+  skip: number,
 ) => {
   if (!Number.isInteger(skip)) {
     throw new InvalidStartInputError(skip);

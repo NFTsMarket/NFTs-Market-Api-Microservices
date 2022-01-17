@@ -1,17 +1,17 @@
-import { MaximumEventPatternDepthError } from "@shared/errors/microservices/maximum-event-pattern-depth.error";
-import { normalizeEventPattern } from "../normalize-event-pattern.util";
+import { MaximumEventPatternDepthError } from '@shared/errors/microservices/maximum-event-pattern-depth.error';
+import { normalizeEventPattern } from '../normalize-event-pattern.util';
 
-describe("Normalize Event Pattern", () => {
-  it("should return an error given undefined", () => {
+describe('Normalize Event Pattern', () => {
+  it('should return an error given undefined', () => {
     expect(() => normalizeEventPattern(undefined)).toThrow(Error());
   });
 
-  it("should return an error given null", () => {
+  it('should return an error given null', () => {
     expect(() => normalizeEventPattern(null)).toThrow(Error());
   });
 
-  it("should return an error given an empty string", () => {
-    expect(() => normalizeEventPattern("")).toThrow(Error());
+  it('should return an error given an empty string', () => {
+    expect(() => normalizeEventPattern('')).toThrow(Error());
   });
 
   it.each([
@@ -19,7 +19,7 @@ describe("Normalize Event Pattern", () => {
       {
         name: {
           type: {
-            value: "test",
+            value: 'test',
           },
         },
       },
@@ -28,24 +28,24 @@ describe("Normalize Event Pattern", () => {
       {
         other: {
           type: {
-            value: "test",
+            value: 'test',
           },
         },
       },
     ],
   ])(
     'should return an error given a pattern deeper than 2 layers = "%s"',
-    (pattern) => {
+    pattern => {
       expect(() => normalizeEventPattern(JSON.stringify(pattern))).toThrow(
-        new MaximumEventPatternDepthError()
+        new MaximumEventPatternDepthError(),
       );
-    }
+    },
   );
 
-  it("should work with a string", () => {
-    const expectedResult = "created-asset";
+  it('should work with a string', () => {
+    const expectedResult = 'created-asset';
 
-    const pattern = JSON.stringify("created-asset");
+    const pattern = JSON.stringify('created-asset');
 
     const res = normalizeEventPattern(pattern);
 
@@ -53,18 +53,18 @@ describe("Normalize Event Pattern", () => {
   });
 
   it.each([
-    [{ type: "created-asset" }, "type-created-asset"],
-    [{ event: "created-asset" }, "event-created-asset"],
+    [{ type: 'created-asset' }, 'type-created-asset'],
+    [{ event: 'created-asset' }, 'event-created-asset'],
   ])('should work with an object = "%s"', (pattern, expectedResult: string) => {
     const res = normalizeEventPattern(JSON.stringify(pattern));
 
     expect(res).toEqual(expectedResult);
   });
 
-  it("should work with nested object", () => {
-    const expectedResult = "type-name-created-asset";
+  it('should work with nested object', () => {
+    const expectedResult = 'type-name-created-asset';
 
-    const pattern = JSON.stringify({ type: { name: "created-asset" } });
+    const pattern = JSON.stringify({ type: { name: 'created-asset' } });
 
     const res = normalizeEventPattern(pattern);
 
@@ -74,16 +74,16 @@ describe("Normalize Event Pattern", () => {
   it.each([
     [
       {
-        type: { name: "created-asset" },
-        value: { type: "service" },
+        type: { name: 'created-asset' },
+        value: { type: 'service' },
       },
-      "type-name-created-asset-value-type-service",
+      'type-name-created-asset-value-type-service',
     ],
     [
       {
-        event: { name: "created-asset" },
+        event: { name: 'created-asset' },
       },
-      "event-name-created-asset",
+      'event-name-created-asset',
     ],
   ])('should work with nested objects = "%s"', (pattern, expectedResult) => {
     const res = normalizeEventPattern(JSON.stringify(pattern));
