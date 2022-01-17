@@ -56,12 +56,12 @@ async function bootstrap() {
   );
 
   app.use(
-    '/picture',
+    '/profilePicture',
     createProxyMiddleware({
       target: configService.get(EnvKey.CLOUD_FUNCTION),
       changeOrigin: true,
       pathRewrite: {
-        '^/picture': '',
+        '^/profilePicture': '',
       },
     }),
   );
