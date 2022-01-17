@@ -1,13 +1,13 @@
-import { IErrorDetail } from "@shared/errors/base-error.abstract";
-import { formatJoiValidationError } from "../format-joi-validation-error.util";
-import * as joi from "joi";
+import { IErrorDetail } from '@shared/errors/base-error.abstract';
+import { formatJoiValidationError } from '../format-joi-validation-error.util';
+import * as joi from 'joi';
 
-describe("FormatJoiValidationError", () => {
-  const field = "name";
+describe('FormatJoiValidationError', () => {
+  const field = 'name';
   const error = '"name" need to be a string';
-  const message = "Need to be a string";
+  const message = 'Need to be a string';
 
-  it("should return an empty array given null", () => {
+  it('should return an empty array given null', () => {
     // arrange
 
     // act
@@ -16,7 +16,7 @@ describe("FormatJoiValidationError", () => {
     expect(res).toEqual([]);
   });
 
-  it("should return an empty array given undefined", () => {
+  it('should return an empty array given undefined', () => {
     // arrange
 
     // act
@@ -36,7 +36,7 @@ describe("FormatJoiValidationError", () => {
 
     const expectedResult: IErrorDetail[] = [
       {
-        field: "name",
+        field: 'name',
         message,
       },
     ];
@@ -64,15 +64,15 @@ describe("FormatJoiValidationError", () => {
   };
 
   it.each([firstTestCase(), secondTestCase()])(
-    "should return an array of IErrorDetail",
+    'should return an array of IErrorDetail',
     (input, expectedResult) => {
       // act
       const res = formatJoiValidationError(
-        (input as unknown) as joi.ValidationError
+        (input as unknown) as joi.ValidationError,
       );
 
       // assert
       expect(res).toEqual(expectedResult);
-    }
+    },
   );
 });

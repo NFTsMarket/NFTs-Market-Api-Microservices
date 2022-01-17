@@ -1,10 +1,10 @@
-import { Test } from "@nestjs/testing";
-import { entityRepository } from "../data/classes/mock/repository.class";
-import { CommonServiceTests } from "./common-service-tests";
-import { ServiceTestConfigType } from "./types/service-test-config.type";
+import { Test } from '@nestjs/testing';
+import { entityRepository } from '../data/classes/mock/repository.class';
+import { CommonServiceTests } from './common-service-tests';
+import { ServiceTestConfigType } from './types/service-test-config.type';
 
 export const initializeCommonServiceTests = async (
-  config: ServiceTestConfigType
+  config: ServiceTestConfigType,
 ) => {
   const {
     EntityRepository,
@@ -31,7 +31,7 @@ export const initializeCommonServiceTests = async (
   const entityService = testModule.get<typeof EntityService>(EntityService);
   const commonServiceTests = new CommonServiceTests(
     entityService,
-    _entityRepository
+    _entityRepository,
   );
 
   return { entityService, commonServiceTests };

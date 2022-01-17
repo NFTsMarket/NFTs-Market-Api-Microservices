@@ -1,4 +1,4 @@
-import * as joi from "joi";
+import * as joi from 'joi';
 
 export const commonEnvValidationObject = {
   PORT: joi.number().default(3000),

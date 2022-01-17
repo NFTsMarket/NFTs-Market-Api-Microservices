@@ -1,14 +1,14 @@
-import { getModelToken, MongooseModule } from "@nestjs/mongoose";
-import { Test } from "@nestjs/testing";
-import { Model } from "mongoose";
-import { LoggerService } from "../logger/logger.service";
-import { loggerService } from "../logger/mock/logger.service";
-import { CommonRepositoryTests } from "./common-repository-tests";
-import { mongooseModuleTesting } from "./db-module";
-import { RepositoryTestConfigType } from "./types/repository-test-config.type";
+import { getModelToken, MongooseModule } from '@nestjs/mongoose';
+import { Test } from '@nestjs/testing';
+import { Model } from 'mongoose';
+import { LoggerService } from '../logger/logger.service';
+import { loggerService } from '../logger/mock/logger.service';
+import { CommonRepositoryTests } from './common-repository-tests';
+import { mongooseModuleTesting } from './db-module';
+import { RepositoryTestConfigType } from './types/repository-test-config.type';
 
 export const initializeCommonRepositoryTests = async (
-  config: RepositoryTestConfigType
+  config: RepositoryTestConfigType,
 ) => {
   const {
     EntityRepository,
@@ -50,18 +50,18 @@ export const initializeCommonRepositoryTests = async (
   }).compile();
 
   const entityRepository = testModule.get<typeof EntityRepository>(
-    EntityRepository
+    EntityRepository,
   );
 
   const entityModel = testModule.get<Model<typeof Entity>>(
-    getModelToken(Entity.name)
+    getModelToken(Entity.name),
   );
 
   const mongooseTestModels: Record<string, Model<any>> = {};
 
   for (const mongooseModel of mongooseModels) {
     mongooseTestModels[mongooseModel.name] = testModule.get(
-      getModelToken(mongooseModel.name)
+      getModelToken(mongooseModel.name),
     );
   }
 
@@ -69,7 +69,7 @@ export const initializeCommonRepositoryTests = async (
     entityRepository,
     entityModel,
     createEntityInput,
-    createDocument
+    createDocument,
   );
 
   return {

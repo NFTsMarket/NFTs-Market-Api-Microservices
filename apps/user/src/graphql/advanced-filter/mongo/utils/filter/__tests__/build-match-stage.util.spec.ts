@@ -1,51 +1,51 @@
-import { MissingRequiredParametersError } from "@shared/errors/common/missing-required-parameters.error";
-import { Types } from "mongoose";
-import { IGetMatchStageInfoInput } from "../../../../interfaces/get-match-stage-info-input.interface";
-import { IMatchStageInfo } from "../../../../interfaces/match-stage-info.interface";
-import { buildMatchStage, getMatchStageInfo } from "../build-match-stage.util";
+import { MissingRequiredParametersError } from '@shared/errors/common/missing-required-parameters.error';
+import { Types } from 'mongoose';
+import { IGetMatchStageInfoInput } from '../../../../interfaces/get-match-stage-info-input.interface';
+import { IMatchStageInfo } from '../../../../interfaces/match-stage-info.interface';
+import { buildMatchStage, getMatchStageInfo } from '../build-match-stage.util';
 
-describe("GetMatchStageInfo", () => {
-  it("should throw an error if field is null", () => {
+describe('GetMatchStageInfo', () => {
+  it('should throw an error if field is null', () => {
     // arrange & act & assert
     expect(() =>
       getMatchStageInfo({
         field: null,
         value: 1,
-      })
+      }),
     ).toThrow(MissingRequiredParametersError);
   });
 
-  it("should throw an error if field is undefined", () => {
+  it('should throw an error if field is undefined', () => {
     // arrange & act & assert
     expect(() =>
       getMatchStageInfo({
         field: null,
         value: 1,
-      })
+      }),
     ).toThrow(MissingRequiredParametersError);
   });
 
-  it("should throw an error if field is empty", () => {
+  it('should throw an error if field is empty', () => {
     // arrange & act & assert
     expect(() =>
       getMatchStageInfo({
-        field: "",
+        field: '',
         value: 1,
-      })
+      }),
     ).toThrow(MissingRequiredParametersError);
   });
 
-  it("should return the corresponding match stage info", () => {
+  it('should return the corresponding match stage info', () => {
     // arrange
     const id = new Types.ObjectId();
 
     const expectedResult: IMatchStageInfo = {
-      fieldName: "bodyStyle",
+      fieldName: 'bodyStyle',
       operation: { $eq: id },
     };
 
     const input: IGetMatchStageInfoInput = {
-      field: "bodyStyle",
+      field: 'bodyStyle',
       value: id.toHexString(),
     };
 
@@ -57,8 +57,8 @@ describe("GetMatchStageInfo", () => {
   });
 });
 
-describe("BuildMatchStage", () => {
-  it("should return the expected match aggregation pipeline stage", () => {
+describe('BuildMatchStage', () => {
+  it('should return the expected match aggregation pipeline stage', () => {
     // arrange
     const id = new Types.ObjectId();
 
@@ -71,15 +71,15 @@ describe("BuildMatchStage", () => {
 
     const input: IMatchStageInfo[] = [
       {
-        fieldName: "year",
+        fieldName: 'year',
         operation: { $gt: 1999 },
       },
       {
-        fieldName: "year",
+        fieldName: 'year',
         operation: { $lt: 2020 },
       },
       {
-        fieldName: "bodyStyle",
+        fieldName: 'bodyStyle',
         operation: { $eq: id },
       },
     ];

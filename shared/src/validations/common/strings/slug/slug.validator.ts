@@ -1,7 +1,7 @@
-import { IDatabaseValidator } from "@shared/data/interfaces/database-validator.interface";
-import validator from "validator";
-import { isSlug } from "../../../functions/is-slug";
-import { errorMessageBuilder } from "../../../error-message-builder";
+import { IDatabaseValidator } from '@shared/data/interfaces/database-validator.interface';
+import validator from 'validator';
+import { isSlug } from '../../../functions/is-slug';
+import { errorMessageBuilder } from '../../../error-message-builder';
 
 export const _validateSlug = (value: string): boolean => {
   if (!value) {

@@ -1,18 +1,18 @@
-import { IGetMatchStageInfoInput } from "../../../interfaces/get-match-stage-info-input.interface";
-import { IMatchStageInfo } from "../../../interfaces/match-stage-info.interface";
-import { getGqlOperation } from "../../../utils/get-graphql-operation.util";
-import { getMongoFilterOperation } from "./get-mongo-filter-operation";
-import { formatMongoFilterOperation } from "./format-mongo-filter-operation.util";
-import { MissingRequiredParametersError } from "@shared/errors/common/missing-required-parameters.error";
-import { MongoFilterOperationEnum } from "../../enum/mongo-filter-operation.enum";
+import { IGetMatchStageInfoInput } from '../../../interfaces/get-match-stage-info-input.interface';
+import { IMatchStageInfo } from '../../../interfaces/match-stage-info.interface';
+import { getGqlOperation } from '../../../utils/get-graphql-operation.util';
+import { getMongoFilterOperation } from './get-mongo-filter-operation';
+import { formatMongoFilterOperation } from './format-mongo-filter-operation.util';
+import { MissingRequiredParametersError } from '@shared/errors/common/missing-required-parameters.error';
+import { MongoFilterOperationEnum } from '../../enum/mongo-filter-operation.enum';
 
 export const getMatchStageInfo = (
-  input: IGetMatchStageInfoInput
+  input: IGetMatchStageInfoInput,
 ): IMatchStageInfo => {
   const { field, value } = input;
 
   if (!field) {
-    throw new MissingRequiredParametersError("getMatchStageInfo");
+    throw new MissingRequiredParametersError('getMatchStageInfo');
   }
 
   const { fieldName, gqlOperation } = getGqlOperation(field);

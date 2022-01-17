@@ -1,6 +1,5 @@
-import { GraphqlFilterOperation } from "../enum/graphql-filter-operation.enum";
-import { MongoOperation } from "../mongo/enum/mongo-filter-operation.enum";
-
+import { GraphqlFilterOperation } from '../enum/graphql-filter-operation.enum';
+import { MongoOperation } from '../mongo/enum/mongo-filter-operation.enum';
 
 export interface IFormatMongooperationInput {
   mongoOperation: MongoOperation;

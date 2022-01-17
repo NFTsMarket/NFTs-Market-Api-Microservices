@@ -1,10 +1,10 @@
-import { JoiValidationPipe } from "../joi-validation.pipe";
-import * as joi from "joi";
-import { ArgumentMetadata } from "@nestjs/common";
-import * as faker from "faker";
-import { InvalidUserInputError } from "@shared/errors/common/invalid-user-input.error";
+import { JoiValidationPipe } from '../joi-validation.pipe';
+import * as joi from 'joi';
+import { ArgumentMetadata } from '@nestjs/common';
+import * as faker from 'faker';
+import { InvalidUserInputError } from '@shared/errors/common/invalid-user-input.error';
 
-describe("JoiValidationPipe", () => {
+describe('JoiValidationPipe', () => {
   const joiValidationPipe = new JoiValidationPipe();
 
   class TestInput {
@@ -16,7 +16,7 @@ describe("JoiValidationPipe", () => {
   }
 
   const metaData: ArgumentMetadata = {
-    type: "body",
+    type: 'body',
     metatype: TestInput,
   };
   const case1 = [
@@ -24,30 +24,30 @@ describe("JoiValidationPipe", () => {
     [
       20,
       {
-        type: "body",
+        type: 'body',
         metatype: Number,
       },
     ],
     [
       faker.name.findName(),
       {
-        type: "body",
+        type: 'body',
         metatype: String,
       },
     ],
   ];
 
-  describe("transform", () => {
+  describe('transform', () => {
     it.each(case1)(
-      "should return the provided input if validations pass",
+      'should return the provided input if validations pass',
       (input: any, metaData: any) => {
         const res = joiValidationPipe.transform(input, metaData);
 
         expect(res).toBe(input);
-      }
+      },
     );
 
-    it("should throw InvalidUserInputError if the provided input does not pass the validations", () => {
+    it('should throw InvalidUserInputError if the provided input does not pass the validations', () => {
       const input = {};
 
       const fun = () => joiValidationPipe.transform(input, metaData);
