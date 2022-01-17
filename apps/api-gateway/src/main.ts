@@ -27,6 +27,9 @@ async function bootstrap() {
     createProxyMiddleware({
       target: configService.get(EnvKey.UPLOAD_SERVICE),
       changeOrigin: true,
+      pathRewrite: {
+        '^/upload': '',
+      },
     }),
   );
 
@@ -34,12 +37,10 @@ async function bootstrap() {
     '/catalogue',
     createProxyMiddleware({
       target: configService.get(EnvKey.CATALOGUE_SERVICE),
-      xfwd: true,
+      changeOrigin: true,
       pathRewrite: {
         '^/catalogue': '',
       },
-      secure: false,
-      // forward: '',
     }),
   );
 
@@ -48,6 +49,9 @@ async function bootstrap() {
     createProxyMiddleware({
       target: configService.get(EnvKey.BUY_SERVICE),
       changeOrigin: true,
+      pathRewrite: {
+        '^/buy': '',
+      },
     }),
   );
 
