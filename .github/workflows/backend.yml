@@ -80,3 +80,20 @@ jobs:
         run: |
           npm run test:force shared
         if: steps.filter.outputs.common == 'true'
+
+  deploy:
+    needs: testing
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Okteto Login
+        uses: okteto/login@latest
+        with:
+          token: ${{ secrets.OKTETO_KEY }}
+      - name: Okteto Pipeline
+        uses: okteto/pipeline@latest
+        with:
+          name: ntfs-microservices
+          namespace: bujosa
