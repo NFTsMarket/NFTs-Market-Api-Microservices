@@ -132,7 +132,7 @@ describe('AuthRepository', () => {
     it('throws an error if the authType field is not set', async () => {
       const input: SignUpUserInput = {
         email: 'email@email.com',
-        name: 'userName',
+        name: faker.name.firstName(),
         socialProvider: AuthProviders.Local,
       };
 
