@@ -52,7 +52,7 @@ jobs:
       - name: Running tests - ${{ matrix.apps }}
         run: |
           npm run test:force apps/${{ matrix.apps }}
-        if: matrix.apps != 'upload' && matrix.apps != 'api-gateway'
+        if: matrix.apps != 'api-gateway'
 
       - name: Running lint
         run: npm run lint:prod
@@ -70,7 +70,6 @@ jobs:
           filters: |
             shared:
               - 'shared/**'
-          # TODO: Change to master
           base: "develop"
 
       - name: Install dependencies
